@@ -1,0 +1,1451 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Wprowadzenie &#8212; Programowanie w systemach GIS 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1. PwGIS 1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Moduł 1 - Lista Zadań" href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Wprowadzenie
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html">Moduł 1 - Lista Zadań</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F1. PwGIS 1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1. PwGIS 1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Wprowadzenie</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Wprowadzenie</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#prowadzacy-zajecia">Prowadzący zajęcia:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jaki-jest-cel-tego-kursu">Jaki jest cel tego kursu?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-pracy-i-program">System pracy i program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zasady-kursu">Zasady kursu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materialy-do-wykladow">Materiały do wykładów</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modul-1-organizacja-bibliotek-programistycznych-funkcje-klasy-moduly">Moduł 1 - organizacja bibliotek programistycznych: funkcje, klasy, moduły</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#srodowisko-programistyczne-w-ktorym-odbywac-bedzie-sie-teraz-kurs-jest-tym-samym-srodowiskiem-w-ktorym-programowali-panstwo-na-zajeciach-z-elementow-programowania">Środowisko programistyczne w którym odbywać będzie się teraz kurs jest tym samym środowiskiem, w którym programowali Państwo na zajęciach z Elementów Programowania</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funkcje">Funkcje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasy">Klasy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasy-a-paradygmaty-programowania-obiektowego">Klasy a paradygmaty programowania obiektowego</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abstrakcja">Abstrakcja</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hermetyzacja">Hermetyzacja</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dziedziczenie">Dziedziczenie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polimorfizm">Polimorfizm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradygmat-1-generalizacja">Paradygmat 1 - Generalizacja:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moduly">Moduły</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wlasne-moduly-i-bilioteki-paczki">Własne moduły i bilioteki (paczki)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="wprowadzenie">
+<h1>Wprowadzenie<a class="headerlink" href="#wprowadzenie" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="prowadzacy-zajecia">
+<h1>Prowadzący zajęcia:<a class="headerlink" href="#prowadzacy-zajecia" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Dr Kamil Smolak; email: <a class="reference external" href="mailto:kamil&#46;smolak&#37;&#52;&#48;upwr&#46;edu&#46;pl">kamil<span>&#46;</span>smolak<span>&#64;</span>upwr<span>&#46;</span>edu<span>&#46;</span>pl</a></p></li>
+</ul>
+<section id="jaki-jest-cel-tego-kursu">
+<h2>Jaki jest cel tego kursu?<a class="headerlink" href="#jaki-jest-cel-tego-kursu" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Naszym zadaniem jest zdobyć wiedzę z zakresu programowania w środowisku Systemów Informacji Przestrzennej (GIS). Kurs ma na celu zapoznanie z możliwościami przetwarzania danych przestrzennych z wykorzystaniem języka programowania Python. Docelowo nauczymy się wykorzystywać język Python do:</p>
+<ul class="simple">
+<li><p>Automatyzacji zadań związanych z przetwarzaniem danych przestrzennych</p></li>
+<li><p>Rozszerzania funkcjonalności środowiska GIS</p></li>
+<li><p>Projektowania i implementowania analiz przestrzennych</p></li>
+</ul>
+</section>
+<section id="system-pracy-i-program">
+<h2>System pracy i program<a class="headerlink" href="#system-pracy-i-program" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Moduł 1 - Organizacja bibliotek programistycznych - funckje, klasy, moduły</p></li>
+<li><p>Moduł 2 - QGIS - obsługa konsoli, proste operacje na danych przestrzennych</p></li>
+<li><p>Moduł 3 - Operacje na warstwach wektorowych, zapis geometrii w środowisku GIS</p></li>
+<li><p>Moduł 4 - Operatory przestrzenne i kalkulator danych</p></li>
+<li><p>Moduł 5 - Operacje na warstwach rastrowych</p></li>
+<li><p>Moduł 6 - Własny plugin rozszerzający funkcjonalność środowiska QGIS (projekt)</p></li>
+<li><p>Moduł 7 - Inne sposoby przetwarzania danych przestrzennych w Pythonie</p></li>
+</ul>
+</section>
+<section id="zasady-kursu">
+<h2>Zasady kursu<a class="headerlink" href="#zasady-kursu" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Wykłady odbywają się co dwa tygodnie, pomiędzy wykładami są dwie sesje ćwiczeń</p></li>
+<li><p>Wiedza teoretycznia przekazywana jest jedynie na wykładzie. Student ma obowiązek się z nią zapoznać.</p></li>
+<li><p>Na ćwiczeniach będą dwa kolokwia.</p></li>
+<li><p>Przedmiot zakończy się jednym dużym sprawdzianem z całego przedmiotu.</p></li>
+<li><p>Na każde ćwiczenia obowiązuje lista ćwiczeń <b> którą należy wykonać na ćwiczeniach </b></p></li>
+<li><p>Na każdych ćwiczeniach do wykonania zadań z listy studenci będą <b> wybierani losowo </b> i wykonywać będą zadania na ocenę.</p></li>
+<li><p>Ocena końcowa z kursu wystawiana jest na podstawie średniej oceny z wykonanych zadań na ćwiczeniach oraz kolokwiów.</p></li>
+</ul>
+</section>
+<section id="materialy-do-wykladow">
+<h2>Materiały do wykładów<a class="headerlink" href="#materialy-do-wykladow" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Dokumentacja techniczna PyQGIS Developer Cookbook - <a class="reference external" href="http://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/">http://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/</a></p></li>
+<li><p>Dokumentacja techniczna QGIS API: <a class="reference external" href="http://qgis.org/api/">http://qgis.org/api/</a></p></li>
+<li><p>Dokumentacja GeoPandas: <a class="reference external" href="https://geopandas.org/en/stable/">https://geopandas.org/en/stable/</a></p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modul-1-organizacja-bibliotek-programistycznych-funkcje-klasy-moduly">
+<h1>Moduł 1 - organizacja bibliotek programistycznych: funkcje, klasy, moduły<a class="headerlink" href="#modul-1-organizacja-bibliotek-programistycznych-funkcje-klasy-moduly" title="Permalink to this heading">#</a></h1>
+<section id="srodowisko-programistyczne-w-ktorym-odbywac-bedzie-sie-teraz-kurs-jest-tym-samym-srodowiskiem-w-ktorym-programowali-panstwo-na-zajeciach-z-elementow-programowania">
+<h2>Środowisko programistyczne w którym odbywać będzie się teraz kurs jest tym samym środowiskiem, w którym programowali Państwo na zajęciach z Elementów Programowania<a class="headerlink" href="#srodowisko-programistyczne-w-ktorym-odbywac-bedzie-sie-teraz-kurs-jest-tym-samym-srodowiskiem-w-ktorym-programowali-panstwo-na-zajeciach-z-elementow-programowania" title="Permalink to this heading">#</a></h2>
+<p>Programowanie w środowiskach GIS będzie wymagało od nas zrozumienia podstaw związancych z organizacją bibliotek programistycznych, bo żeby korzystać ze struktury środowiska, musimy zrozumieć jak ono jest skonstruowane.</p>
+<p>Dlatego też, proces omawiania zagadnienia rozpoczniemy od omówienia organizacji kodu w bibliotekach programistycznych (a zatem również i w QGIS).</p>
+<p>Są trzy podstawowe poziomy organizacji kodu:</p>
+<ul class="simple">
+<li><p>funkcje</p></li>
+<li><p>klasy</p></li>
+<li><p>moduły</p></li>
+</ul>
+</section>
+<section id="funkcje">
+<h2>Funkcje<a class="headerlink" href="#funkcje" title="Permalink to this heading">#</a></h2>
+<p>Funkcje już znamy. Są to wykonywalne bloki kodu.</p>
+<p>Funcje mają strukturę (syntax) następującej postaci:</p>
+<p><i><b>nazwa</b>(parametr_1,parametr_2,…,parametr_n)</i></p>
+<p>Wyróżniamy <b>funkcje wbudowane</b> i <b> funkcje zdefiniowane przez użytkownika</b>.</p>
+<ul class="simple">
+<li><p>Funkcje wbudowane są dostepne poprzez wywołanie ich nazwy wprost w kodzie (dostępne tu: <a class="reference external" href="https://docs.python.org/2/library/functions.html">https://docs.python.org/2/library/functions.html</a>). Przykładem takiej funkcji jest <b>print()</b></p></li>
+<li><p>Funkcje definiowane przez użytkownika pozwalają na utworzenie nowej funkcjonalności.</p></li>
+<li><p>Biblioteki programistyczne zawierają funkcje, które możemy zaimportować i ich używać.</p></li>
+</ul>
+<p>Funkcje Są szczególnie przydatne gdy używamy pewnego fragmentu kodu <b>wielokrotnie</b></p>
+<p>Mogą (nie muszą) przyjmować parametry/argumenty</p>
+<p>Mogą (nie muszą) zwracać obiekt</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">nazwa_funkcji</span><span class="p">(</span><span class="n">argumenty</span><span class="p">):</span>
+    <span class="n">instrukcje</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">obiekt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dzielniki</span><span class="p">(</span><span class="n">liczba</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Zwraca wszystkie dzielniki podanej liczby</span>
+<span class="sd">    param: liczba -- liczba do odszukania dzielników</span>
+<span class="sd">    return: lista dzielników&quot;&quot;&quot;</span>
+    <span class="n">zgodne</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">liczba</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">liczba</span><span class="o">%</span><span class="k">n</span> == 0:
+            <span class="n">zgodne</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">zgodne</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="klasy">
+<h2>Klasy<a class="headerlink" href="#klasy" title="Permalink to this heading">#</a></h2>
+<p>Żeby zrozumieć istotę działania metod i ich różność od funkcji, przyjrzyjmy się czym jest obiekt.</p>
+<p>Obiekt to <b>wszystko</b> co napiszemy w Pythonie. To zarówno klasy jak i funkcje.</p>
+<p>Spotkamy się z metodami przypisanymi do klas. Klasa to bardzo ważny element języków obiektowych.</p>
+<h2>Czym zatem jest klasa?</h2>
+<p><b>Klasa</b> to <i>abstrakcja</i> pewnego obiektu. Oznacza to uogólnieniony opis pewnego elementu, który zdefiniowany jest przez taką klasę poprzez określenie jego typowych <b>cech (atrybutów) i operacji (metod), które można na nim wykonać</b>. Tą samą strukturą opisujemy elementy świata rzeczywistego.</p>
+<p>Przykład obrazujący:</p>
+<p><b>Pizza</b> to abstrakcyjna klasa, którą opisujemy pewien typ dania.
+Ma cechy (atrybuty):</p>
+<ul>
+    <li>Składniki</li>
+    <li>Sos</li>
+</ul>
+<p>Oraz metody:</p>
+<ul>
+    <li>Jedz</li>
+    <li>Polej oliwą</li>
+</ul><h1>Instancja</h1>
+<p>To praktyczna realizacja klasy.</p>
+<p>Kontynuując przykład obrazujący:</p>
+<p>Piekąc pizzę nadajemy jej atrybuty - składniki (pieczarki, ser) i sos (pomidorowy). Wtedy otrzymujemy <b> instancję</b> klasy pizza w postaci <i>pizzy funghi</i>.</p>
+<p><b>Pizza</b> to abstrakcyjna klasa, którą opisujemy pewien typ dania.
+Ma cechy (atrybuty):</p>
+<ul>
+    <li>Składniki = [pieczarki, ser]</li>
+    <li>Sos = pomidorowy</li>
+</ul>
+<p>Teraz możemy wywołać metodę na naszej instancji, która zdefiniowana już jest w klasie:</p>
+<p>pizza_funghi.jedz()</p>
+<img src="bell_fig5.jpg"/></section>
+<section id="klasy-a-paradygmaty-programowania-obiektowego">
+<h2>Klasy a paradygmaty programowania obiektowego<a class="headerlink" href="#klasy-a-paradygmaty-programowania-obiektowego" title="Permalink to this heading">#</a></h2>
+<p>Klasy są realizacją intencji programowania obiektowego, czyli takiego dla którego Python został stworzony.</p>
+<p>Będąc przy programowaniu obiektowym. Programowanie obiektowe opiera się na czterech paradygmatach.</p>
+<ul>
+    <li>Abstrakcja</li>
+    <li>Hermetyzacja</li>
+    <li>Dziedziczenie</li>
+    <li>Polimorfizm</li>
+</ul><section id="abstrakcja">
+<h3>Abstrakcja<a class="headerlink" href="#abstrakcja" title="Permalink to this heading">#</a></h3>
+<p>Polega na zredukowanie właściwości opisywanego obiektu do najbardziej podstawowych, ograniczenie zakresu funkcjonalności do kluczowych.</p>
+<p>Inaczej uogólnienie</p>
+<img src="01-uml-base-class-and-object-explained.png"/><p>Abstrakcyjna klasa PIES - ma atrybuty:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Kolor
+Kolor oczu
+Wysokość
+Długość
+Waga
+</pre></div>
+</div>
+<p>I metody:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usiądź
+Połóż się
+Machaj ogonem
+Przyjść
+</pre></div>
+</div>
+<p>A Bobby jest praktyczną realizacją, ma te same metody i ma nadane chechy.</p>
+</section>
+<section id="hermetyzacja">
+<h3>Hermetyzacja<a class="headerlink" href="#hermetyzacja" title="Permalink to this heading">#</a></h3>
+<p>Polega na ograniczeniu dostępu do danych w klasie za pomocą interfejsu. Obiekt udostępnia pewien zbiór metod, które widoczne są z zewnątrz, ale nie pozwala na całkowitą ingerencję w jego strukturę.</p>
+<p>Dostęp do atrybutów jest realizowanych przez tzw. settery - do przypisania wartości oraz gettery - do pobrania wartości. Nie me bezpośredniego dostępu do danych.</p>
+</section>
+<section id="dziedziczenie">
+<h3>Dziedziczenie<a class="headerlink" href="#dziedziczenie" title="Permalink to this heading">#</a></h3>
+<p>Pozwala na przejęcie części cech i metod przez klasy wywodzące się z klas wyższego rzędu. Dzięki temu uzyskujemy funkcjonalności już istniejące, które możemy rozszerzyć i ewentualnie zmienić.</p>
+<img src="Image5905.gif"/><p>Powyżej widzimy diagram klas UML.</p>
+<p>Klasa nadrzędna - Osoba, posiada atrybuty - imię, nazwisko, data urodzenia oraz metodę policz wiek</p>
+<p>Klasa dziedzicząca (podrzędna) - Pracownik, posiada atrybuty pensja, stanowisko oraz wszystkie metody klasy nadrzędnej (imię, nazwisko, data urodzenia) oraz metody zmień pensję i policz wiek.</p>
+<p>Klasa IPracownik jest interfejsem - jeszcze jednym elementem realizującym paradygmat programowania obiektowego - hermetyzacji/enkapsulacji - stanowi interfejs operujący na cechach pracownika, czyli jest pośrednikiem dokonującym zmiany w instancjach klasy Pracownik. Interfejs ma za zadanie kontrolować zmiany i ograniczać pożądane ingerencję w cechy instancji klas.</p>
+<p>Klasy pozwalają na realizację wszystkich czterech paradygmatów programowania obiektowego. Diagram klas UML jak powyżej może zostać przeniesiony i zaimplementowany w Pythonie.</p>
+</section>
+<section id="polimorfizm">
+<h3>Polimorfizm<a class="headerlink" href="#polimorfizm" title="Permalink to this heading">#</a></h3>
+<p>Dopuszczalne jest <b> przeciążanie </b> metod. Oznacza to, że wywołując jedną funkcję lub metodę otrzymujemy inne jej zachowanie w zależności od użytych parametrów i danych.</p>
+<p>Przykładowo, konwertując do ciągu znaków za pomocą polecenia str(), funkcja zachowuje się inaczej, zależnie od tego czy konwertujemy typ <i>int, float</i> czy <i>boolean</i>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;2&#39;</span><span class="o">+</span><span class="s1">&#39;2&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;22&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="paradygmat-1-generalizacja">
+<h2>Paradygmat 1 - Generalizacja:<a class="headerlink" href="#paradygmat-1-generalizacja" title="Permalink to this heading">#</a></h2>
+<h2> Definicja klasy </h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>class Nazwa(dziedziczenie):
+    instrukcje
+    ...
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Osoba</span><span class="p">():</span> <span class="c1">#puste dziedziczenie oznacza brak klasy nadrzędnej</span>
+    <span class="k">pass</span> <span class="c1">#polecenie pominięcia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span> <span class="o">=</span> <span class="n">Osoba</span><span class="p">()</span> <span class="c1">#realizacja klasy</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">Jurek</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>__main__.Osoba
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Jurek</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Osoba object at 0x000002445205DA00&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Klasa osoba nie ma reprezentacji tekstowej, więc wyświetla nam się tekst domyślny. (zmienimy to później)</p>
+<p>Powyzej widzimy, że Jurek jest typu Osoba (klasy, którą właśnie stworzyliśmy)</p>
+<h2> Inicjalizacja </h2>
+<p>Inicjalizacja klasy odbywa się za pomocą <b> funkcji magicznej </b> <span class="math notranslate nohighlight">\(__init__\)</span> - wywoływany jest przy instancjonowaniu</p>
+<p>Klasa do sebie samej odwołuje się przez <span class="math notranslate nohighlight">\(self\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Osoba</span><span class="p">():</span>
+    
+    <span class="c1">#dwie linijki przerwy zgodnie z PEP8</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">):</span> <span class="c1">#w funkcjach klasy pierwszy argument to zawsze self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imie</span> <span class="o">=</span> <span class="n">imie</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nazwisko</span> <span class="o">=</span> <span class="n">nazwisko</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_urodzenia</span> <span class="o">=</span> <span class="n">data_urodzenia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Powyżej w funkcji magicznej <strong>init</strong> przypisaliśmy klasie 3 cechy - imię, nazwisko i data urodzenia. <strong>init</strong> uruchamiany jest zawsze przy instancjonowaniu klasy, zatem wywołując nazwę klasy Osoba() w paramterach podajemy to co znajduje się w funkcji <strong>init</strong>, te cechy są przekazywane do funkcji <strong>init</strong>.</p>
+<p>self.imie - oznacza, że pod atrybutem .imie, będzie znajdowała się podana wartość.</p>
+<p>Realizacja jak poniżej. Tworzymy obiekt o nazwie Jurek typu Osoba i nadajemy mu 3 cechy, zgodnie z definicją klasy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span> <span class="o">=</span> <span class="n">Osoba</span><span class="p">(</span><span class="s2">&quot;Jurek&quot;</span><span class="p">,</span><span class="s2">&quot;Kiler&quot;</span><span class="p">,</span><span class="s2">&quot;10-10-1974&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Teraz możemy wyświetlić te cechy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span><span class="p">,</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">nazwisko</span><span class="p">,</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">data_urodzenia</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jurek Kiler 10-10-1974
+</pre></div>
+</div>
+</div>
+</div>
+<p>Stworzyliśmy klasę, ale paradygmaty nie są zachowane:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span> <span class="o">=</span> <span class="s2">&quot;Andrzej&quot;</span> <span class="c1">#imie można zmienić dowolnie (BRAK HERMETYZACJI)</span>
+<span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Andrzej&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<h3> Metody klas </h3><p>Dodajmy teraz metodę do klasy. Definiuje się je jako kolejne funkcje:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Osoba</span><span class="p">():</span>
+    
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imie</span> <span class="o">=</span> <span class="n">imie</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nazwisko</span> <span class="o">=</span> <span class="n">nazwisko</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_urodzenia</span> <span class="o">=</span> <span class="n">data_urodzenia</span>
+        
+    <span class="k">def</span> <span class="nf">wiek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1">#w funkcjach klasy pierwszy argument to zawsze self</span>
+        <span class="k">return</span> <span class="mi">2019</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_urodzenia</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span> <span class="o">=</span> <span class="n">Osoba</span><span class="p">(</span><span class="s2">&quot;Jurek&quot;</span><span class="p">,</span><span class="s2">&quot;Kiler&quot;</span><span class="p">,</span><span class="s2">&quot;10-10-1974&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Metody wywołujemy w znany nam sposób. Mogą przyjmowąć parametry:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span><span class="o">.</span><span class="n">wiek</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>45
+</pre></div>
+</div>
+</div>
+</div>
+<h2> Inne funkcje magiczne </h2>
+<p>Tych jest dużo, poznajmy dwie służące reprezentacji instancji klas:</p>
+<ul>
+    <li> $__repr__$ - reprezentacja obiektu. Wywoływana jest poprzez $repr(nazwa_obiektu)$ lub po wpisaniu nazwy zmiennej w interpreterze</li>
+    <li> $__str__$ - tekstowa reprezentacja obiektu. Wywoływana poprzez str(nazwa_obiektu) lub print</li>
+</ul><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Osoba</span><span class="p">():</span>
+    
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imie</span> <span class="o">=</span> <span class="n">imie</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nazwisko</span> <span class="o">=</span> <span class="n">nazwisko</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_urodzenia</span> <span class="o">=</span> <span class="n">data_urodzenia</span>
+        
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1">#metoda magiczna __str__ definiuje to co zostanie zwrócone przez funkcję print() wywołaną na obiekcie</span>
+        <span class="k">return</span> <span class="s2">&quot;Człowiek imieniem </span><span class="si">{}</span><span class="s2">, w wieku </span><span class="si">{}</span><span class="s2"> lat&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imie</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wiek</span><span class="p">()))</span> <span class="c1">#formatowanie tekstu, wykorzystaliśmy funkcję wiek</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1">#metoda magiczna __repr__ definiuje to co zostanie wyświetlone jako opis obiektu w rejestrze pamięci</span>
+        <span class="k">return</span> <span class="s2">&quot;Osoba class(name: </span><span class="si">{}</span><span class="s2">, surname: </span><span class="si">{}</span><span class="s2">, birth date: </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imie</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nazwisko</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_urodzenia</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">wiek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2019</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_urodzenia</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span> <span class="o">=</span> <span class="n">Osoba</span><span class="p">(</span><span class="s2">&quot;Jurek&quot;</span><span class="p">,</span><span class="s2">&quot;Kiler&quot;</span><span class="p">,</span><span class="s2">&quot;10-10-1974&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Jurek</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Człowiek imieniem Jurek, w wieku 45 lat
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Osoba class(name: Jurek, surname: Kiler, birth date: 10-10-1974)
+</pre></div>
+</div>
+</div>
+</div>
+<h1> Więcej funkcji magicznych zmieniających zachowanie klas </h1>
+<p>Teraz czas na funkcje magiczne modyfikujące zachowanie operatorów. Przykładowo funkcja <strong>add</strong> definiuje zachowanie obiektu klas przy operatorze ‘+’</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Liczba</span><span class="p">():</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wartosc</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wartosc</span> <span class="o">=</span> <span class="n">wartosc</span>
+        
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inna</span><span class="p">):</span> <span class="c1">#zmiana zachowania przy dodawaniu </span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wartosc</span> <span class="o">+</span> <span class="n">inna</span><span class="o">.</span><span class="n">wartosc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    
+<span class="k">class</span> <span class="nc">Liczba2</span><span class="p">():</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wartosc</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wartosc</span> <span class="o">=</span> <span class="n">wartosc</span>
+        
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inna</span><span class="p">):</span> <span class="c1">#zmiana zachowania przy dodawaniu </span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wartosc</span> <span class="o">-</span> <span class="n">inna</span><span class="o">.</span><span class="n">wartosc</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span> <span class="c1">#inna metoda</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Funkcja magiczna <strong>add</strong>  przyjmuje dwa parametry self, czyli to co zawsze musi się tam znaleźc i “inna”, czyli drugą instancję tej samej klasy.</p>
+<p>Będąc dokładnym: nie musi być tej samej klasy, ale musi posiadać atrybut wykorzystany w funkcji. W tym przypadku, druga klasa wykorzystana w sumowaniu musi posiadać też atrybut .wartość.</p>
+<p>W powyższej definicji pobieramy wartość obiektu klasy Liczba, dodajemy do wartości drugiego obiektu klasy Liczba, odejmujemy 1 i podnosimy do kwadratu. Oto wynik</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Liczba</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1">#jedna instancja</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">Liczba2</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">#druga instancja</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="c1">#(10+5-1)**2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>196
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">*</span><span class="n">b</span> <span class="c1">#nie oprogramowalismy, więc nie zadziała</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [21],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
+
+<span class="ne">TypeError</span>: unsupported operand type(s) for *: &#39;Liczba&#39; and &#39;Liczba2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> #resetujemy pamięć
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Once deleted, variables cannot be recovered. Proceed (y/[n])? y
+Don&#39;t know how to reset  #resetujemy, please run `%reset?` for details
+Don&#39;t know how to reset  pamięć, please run `%reset?` for details
+</pre></div>
+</div>
+</div>
+</div>
+<h1> Paradygmat 2 - hermetyzacja </h1>
+Hermetyzacja ma na celu uniemożlwienie dostępu do atrybutów instancji klas.
+Odbywa się przez konwencję dodania do argumentów własnych klasy prefiksu w postaci podłogi. Zatem:<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Osoba</span><span class="p">():</span>
+    
+    <span class="c1">#dwie linijki przerwy zgodnie z PEP8</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span> <span class="o">=</span> <span class="n">imie</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nazwisko</span> <span class="o">=</span> <span class="n">nazwisko</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_urodzenia</span> <span class="o">=</span> <span class="n">data_urodzenia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span> <span class="o">=</span> <span class="n">Osoba</span><span class="p">(</span><span class="s2">&quot;Jurek&quot;</span><span class="p">,</span><span class="s2">&quot;Kiler&quot;</span><span class="p">,</span><span class="s2">&quot;10-10-1974&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span><span class="p">,</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">nazwisko</span><span class="p">,</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">data_urodzenia</span><span class="p">)</span> <span class="c1">#nie mamy dostępu</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">Input In [39],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span><span class="p">,</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">nazwisko</span><span class="p">,</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">data_urodzenia</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: &#39;Osoba&#39; object has no attribute &#39;imie&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Jurek</span><span class="o">.</span><span class="n">_imie</span><span class="p">)</span> <span class="c1">#to zadziała, ale _ to tylko konwencja, użycie _ wymusza zastanowienie się nad swoimi poczynianiami</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jurek
+</pre></div>
+</div>
+</div>
+</div>
+<p>Jak się więc prawidłowo dostawać do zmiennych? Przez tak zwane settery i gettery. Tworzone w Pythonie poprzez <b>dekorator</b> &#64;property. Getter - zwraca wartość, Setter pozwala je zmieniać</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Osoba</span><span class="p">():</span>
+    
+    <span class="c1">#dwie linijki przerwy zgodnie z PEP8</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span> <span class="o">=</span> <span class="n">imie</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nazwisko</span> <span class="o">=</span> <span class="n">nazwisko</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_urodzenia</span> <span class="o">=</span> <span class="n">data_urodzenia</span>
+        
+    <span class="nd">@property</span> <span class="c1">#getter</span>
+    <span class="k">def</span> <span class="nf">imie</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nazwisko</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nazwisko</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data_urodzenia</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_urodzenia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span> <span class="o">=</span> <span class="n">Osoba</span><span class="p">(</span><span class="s2">&quot;Jurek&quot;</span><span class="p">,</span><span class="s2">&quot;Kiler&quot;</span><span class="p">,</span><span class="s2">&quot;10-10-1974&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span><span class="p">,</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">nazwisko</span><span class="p">,</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">data_urodzenia</span><span class="p">)</span> <span class="c1">#teraz zadziała</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jurek Kiler 10-10-1974
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wywołując Jurek.imie uruchamiamy tak naprawdę naszą funkcję gettera, nie wywołujemy atrybuty. To co tak naprawdę dostajemy to kopia, można jej użyć w operacjach poza klasą, ale samego atrybutu nie można zmienić:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span> <span class="o">=</span> <span class="s2">&quot;Andrzej&quot;</span> <span class="c1">#nie można go zmienić</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">Input In [44],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span> <span class="o">=</span> <span class="s2">&quot;Andrzej&quot;</span>
+
+<span class="ne">AttributeError</span>: can&#39;t set attribute
+</pre></div>
+</div>
+</div>
+</div>
+<p>Poniżej zastosowanie settera do zmian wartości atrybutów:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Osoba</span><span class="p">():</span>
+    
+    <span class="c1">#dwie linijki przerwy zgodnie z PEP8</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span> <span class="o">=</span> <span class="n">imie</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nazwisko</span> <span class="o">=</span> <span class="n">nazwisko</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_urodzenia</span> <span class="o">=</span> <span class="n">data_urodzenia</span>
+        
+    <span class="nd">@property</span> <span class="c1">#getter</span>
+    <span class="k">def</span> <span class="nf">imie</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nazwisko</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nazwisko</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data_urodzenia</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_urodzenia</span>
+    
+    <span class="nd">@imie</span><span class="o">.</span><span class="n">setter</span> <span class="c1">#setter</span>
+    <span class="k">def</span> <span class="nf">imie</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">imie</span> <span class="o">==</span> <span class="s2">&quot;Maciej&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WSZYSTKO TYLKO NIE MACIEJ!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span> <span class="o">=</span> <span class="n">imie</span>
+        
+    <span class="nd">@nazwisko</span><span class="o">.</span><span class="n">setter</span> <span class="c1">#setter</span>
+    <span class="k">def</span> <span class="nf">nazwisko</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nazwisko</span> <span class="o">=</span> <span class="n">nazwisko</span>
+        
+    <span class="nd">@data_urodzenia</span><span class="o">.</span><span class="n">setter</span> <span class="c1">#setter</span>
+    <span class="k">def</span> <span class="nf">data_urodzenia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_urodzenia</span> <span class="o">=</span> <span class="n">data_urodzenia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span> <span class="o">=</span> <span class="n">Osoba</span><span class="p">(</span><span class="s2">&quot;Jurek&quot;</span><span class="p">,</span><span class="s2">&quot;Kiler&quot;</span><span class="p">,</span><span class="s2">&quot;10-10-1974&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span><span class="p">,</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">nazwisko</span><span class="p">,</span> <span class="n">Jurek</span><span class="o">.</span><span class="n">data_urodzenia</span><span class="p">)</span> <span class="c1">#to co dostajemy to kopia</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jurek Kiler 10-10-1974
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span> <span class="o">=</span> <span class="s2">&quot;Andrzej&quot;</span> <span class="c1">#już można</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Andrzej
+</pre></div>
+</div>
+</div>
+</div>
+<p>W klasie zdefiniowaliśmy w setterze dodaktowy warunek, który ma za zadanie powstrzymać niechciane zmiany atrybutu obiektów:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jurek</span><span class="o">.</span><span class="n">imie</span> <span class="o">=</span> <span class="s2">&quot;Maciej&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WSZYSTKO TYLKO NIE MACIEJ!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bardziej realny przykład - nie można ustawić saldu konta poniżej 0.</p>
+<h1> Paradygmat 3 - Polimorficzność </h1>
+<p>Pamietacie przykład sprzed chwili a+b, b+a? + to ten sam operator, a mimo to klasy zachowały się inaczej w zależności od kolejności. To właśnie jest przykład polimorficzności, 1 - polimorfizm operatorów.</p>
+<p>Spróbujmy jeszcze zobaczyć inny przykład:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pies</span><span class="p">():</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">kolor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span> <span class="o">=</span> <span class="n">imie</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kolor</span> <span class="o">=</span> <span class="n">kolor</span>
+        
+    <span class="k">def</span> <span class="nf">daj_glos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HAU!&quot;</span><span class="p">)</span>
+        
+        
+<span class="k">class</span> <span class="nc">Kot</span><span class="p">():</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">kolor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span> <span class="o">=</span> <span class="n">imie</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kolor</span> <span class="o">=</span> <span class="n">kolor</span>
+        
+    <span class="k">def</span> <span class="nf">daj_glos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MIAU!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fafik</span> <span class="o">=</span> <span class="n">Pies</span><span class="p">(</span><span class="s2">&quot;fafik&quot;</span><span class="p">,</span><span class="s2">&quot;czarny&quot;</span><span class="p">)</span>
+<span class="n">bruno</span> <span class="o">=</span> <span class="n">Kot</span><span class="p">(</span><span class="s2">&quot;bruno&quot;</span><span class="p">,</span><span class="s2">&quot;biały&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">zwierze</span> <span class="ow">in</span> <span class="p">(</span><span class="n">fafik</span><span class="p">,</span><span class="n">bruno</span><span class="p">):</span>
+    <span class="n">zwierze</span><span class="o">.</span><span class="n">daj_glos</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HAU!
+MIAU!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Powyższy przykład to polimoficzność metod klas - metody w zależności od klasy zachowują się inaczej. To drugi rodzaj polimorfizmu.</p>
+<p>Innym, trzecim przykładem moze być polimorficzność funkcji (czasem metod) w zależności od parametrów:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">co_to</span><span class="p">(</span><span class="n">parametr1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parametr1</span><span class="p">,</span><span class="nb">str</span><span class="p">):</span> <span class="c1">#funkcja wbudowana, sprawdza jakiego typu jest zmienna</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TO TEKST!&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parametr1</span><span class="p">,</span><span class="nb">float</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TO LICZBA ZMIENNOPRZECINKOWA!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">co_to</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TO TEKST!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">co_to</span><span class="p">(</span><span class="mf">2.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TO LICZBA ZMIENNOPRZECINKOWA!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ostatni przypadek polimorfizmu związany jest z dziedziczeniem klas, a zatem ostatnim paradygmatem programowania obiektowego:</p>
+<h2> Czas więc na ostatni paradygmat - dziedziczność! </h2><p>Spróbujmy zaimplementować fragment dziedziczenia Osoba -&gt; Pracownik z poniższego diagramu UML</p>
+<img src="Image5905.gif"/><p>Kod:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Osoba</span><span class="p">():</span>
+    
+    <span class="c1">#dwie linijki przerwy zgodnie z PEP8</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span> <span class="o">=</span> <span class="n">imie</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nazwisko</span> <span class="o">=</span> <span class="n">nazwisko</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_urodzenia</span> <span class="o">=</span> <span class="n">data_urodzenia</span>
+        
+    <span class="nd">@property</span> <span class="c1">#getter</span>
+    <span class="k">def</span> <span class="nf">imie</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nazwisko</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nazwisko</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data_urodzenia</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_urodzenia</span>
+    
+    <span class="nd">@imie</span><span class="o">.</span><span class="n">setter</span> <span class="c1">#setter</span>
+    <span class="k">def</span> <span class="nf">imie</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">imie</span> <span class="o">==</span> <span class="s2">&quot;Maciej&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WSZYSTKO TYLKO NIE MACIEJ!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_imie</span> <span class="o">=</span> <span class="n">imie</span>
+        
+    <span class="nd">@nazwisko</span><span class="o">.</span><span class="n">setter</span> <span class="c1">#setter</span>
+    <span class="k">def</span> <span class="nf">nazwisko</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nazwisko</span> <span class="o">=</span> <span class="n">nazwisko</span>
+        
+    <span class="nd">@data_urodzenia</span><span class="o">.</span><span class="n">setter</span> <span class="c1">#setter</span>
+    <span class="k">def</span> <span class="nf">data_urodzenia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_urodzenia</span> <span class="o">=</span> <span class="n">data_urodzenia</span>
+        
+    <span class="k">def</span> <span class="nf">wiek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2019</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_urodzenia</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Poniżej tworzymy klasę dziedziczącą po klasie Osoba:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pracownik</span><span class="p">(</span><span class="n">Osoba</span><span class="p">):</span> <span class="c1">#tu informujemy, że dziedziczy po klasie osoba</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">,</span> <span class="n">pensja</span><span class="p">,</span> <span class="n">stanowisko</span><span class="p">):</span> <span class="c1">#czyli przyjmuje wszystkie atrybuty co osoba + nowe</span>
+        <span class="n">Osoba</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">)</span> <span class="c1">#tu inicjalizacja klasy nadrzędnej z 3 parametrami</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pensja</span> <span class="o">=</span> <span class="n">pensja</span> <span class="c1">#i dodatkowe parametry</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stanowisko</span> <span class="o">=</span> <span class="n">stanowisko</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Instancjonujemy podając wszystkie atrybuty:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jerzy</span> <span class="o">=</span> <span class="n">Pracownik</span><span class="p">(</span><span class="s2">&quot;Jerzy&quot;</span><span class="p">,</span> <span class="s2">&quot;Morgan&quot;</span><span class="p">,</span> <span class="s2">&quot;20-12-1955&quot;</span><span class="p">,</span> <span class="mi">5400</span><span class="p">,</span> <span class="s2">&quot;Handlowiec&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jerzy</span><span class="o">.</span><span class="n">imie</span> <span class="c1">#działa, bo w klasie nadrzędnej jest getter</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Jerzy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jerzy</span><span class="o">.</span><span class="n">stanowisko</span> <span class="c1">#nie działa, bo w tej klasie nie ma gettera (ale powinien być)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">Input In [83],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Jerzy</span><span class="o">.</span><span class="n">stanowisko</span>
+
+<span class="ne">AttributeError</span>: &#39;Pracownik&#39; object has no attribute &#39;stanowisko&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jerzy</span><span class="o">.</span><span class="n">wiek</span><span class="p">()</span> <span class="c1">#bo dziedziczy metody, mimo tego że w tej klasie nie zostało to zaimplementowane</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
+</pre></div>
+</div>
+</div>
+</div>
+<h3> To co z tą polimorficznością dziedziczną? </h3>
+<p>A to, że możemy metody w klasie podrzędnej nadpisywać. Przy okazji, zwróćcię uwagę na zastosowanie nowej funkcji super() poniżej</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pracownik</span><span class="p">(</span><span class="n">Osoba</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">,</span> <span class="n">pensja</span><span class="p">,</span> <span class="n">stanowisko</span><span class="p">):</span> 
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">imie</span><span class="p">,</span> <span class="n">nazwisko</span><span class="p">,</span> <span class="n">data_urodzenia</span><span class="p">)</span> <span class="c1">#tu zamiast Osoba, można wywołać funkcję super, czyli odwołanie do klasy nadrzędnej (wtedy pomijamy self)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pensja</span> <span class="o">=</span> <span class="n">pensja</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stanowisko</span> <span class="o">=</span> <span class="n">stanowisko</span>
+        
+    <span class="k">def</span> <span class="nf">wiek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1">#nadpisujemy funkcję klasy nadrzędnej</span>
+        <span class="k">return</span> <span class="s2">&quot;Pracownika się o wiek nie pyta&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jerzy</span> <span class="o">=</span> <span class="n">Pracownik</span><span class="p">(</span><span class="s2">&quot;Jerzy&quot;</span><span class="p">,</span> <span class="s2">&quot;Morgan&quot;</span><span class="p">,</span> <span class="s2">&quot;20-12-1955&quot;</span><span class="p">,</span> <span class="mi">5400</span><span class="p">,</span> <span class="s2">&quot;Handlowiec&quot;</span><span class="p">)</span>
+<span class="n">Jerzy</span><span class="o">.</span><span class="n">wiek</span><span class="p">()</span> <span class="c1">#metoda wiek dla klasy podrzędnej zachowuje się inaczej niż dla nadrzędnej</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Pracownika się o wiek nie pyta&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="moduly">
+<h2>Moduły<a class="headerlink" href="#moduly" title="Permalink to this heading">#</a></h2>
+<p>Aby uporządkować kod, możemy rozbić go na moduły, które przechowują pewne funkcjonalności i w razie potrzeby są wywoływane.</p>
+<p>Dzięki temu unikamy definiciji wszystkich funkcji w pamięci za jednym razem, a jedynie wywołujemy wyłącznie potrzebne funkcje.</p>
+<p><b> W ten sposób pisane są biblioteki programistyczne </b></p>
+<p>Dokładnie w taki sam sposób w jaki importujemy biblioteki, mogą być importowane nasze własne moduły.</p>
+<p>Moduły również dokumentujemy!</p>
+<img src="modules.png"/><section id="wlasne-moduly-i-bilioteki-paczki">
+<h3>Własne moduły i bilioteki (paczki)<a class="headerlink" href="#wlasne-moduly-i-bilioteki-paczki" title="Permalink to this heading">#</a></h3>
+<p>Jeśli zatem chcemy napisać własną bibliotekę(a będziemy to robić), to musi ona zawierać pewne ustalone pliki.</p>
+<p>Jeśli nasz kod zawiera funkcję <span class="math notranslate nohighlight">\(__main__\)</span> należy pamiętać, że kod pod tą funkcją wykonwa się <b> w czasie importowania biblioteki!</b>. Czasem to bardzo użyteczna funkcja mająca na celu przygotować pewne zmienne.</p>
+<p>Biblioteka/paczka - aby była rozpoznawalna przez Pythona musi zawierać plik <b><span class="math notranslate nohighlight">\(__init.py__\)</span></b> - nawet jeśli jest pusty. Bez jego obecności paczka nie zostanie zinterpretowana jako bilbioteka.</p>
+<p>Modułami zajmiemy się bliżej, kiedy będą nam już potrzebne</p>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="right-next"
+       href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Moduł 1 - Lista Zadań</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Wprowadzenie</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#prowadzacy-zajecia">Prowadzący zajęcia:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jaki-jest-cel-tego-kursu">Jaki jest cel tego kursu?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-pracy-i-program">System pracy i program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zasady-kursu">Zasady kursu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materialy-do-wykladow">Materiały do wykładów</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modul-1-organizacja-bibliotek-programistycznych-funkcje-klasy-moduly">Moduł 1 - organizacja bibliotek programistycznych: funkcje, klasy, moduły</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#srodowisko-programistyczne-w-ktorym-odbywac-bedzie-sie-teraz-kurs-jest-tym-samym-srodowiskiem-w-ktorym-programowali-panstwo-na-zajeciach-z-elementow-programowania">Środowisko programistyczne w którym odbywać będzie się teraz kurs jest tym samym środowiskiem, w którym programowali Państwo na zajęciach z Elementów Programowania</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funkcje">Funkcje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasy">Klasy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasy-a-paradygmaty-programowania-obiektowego">Klasy a paradygmaty programowania obiektowego</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abstrakcja">Abstrakcja</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hermetyzacja">Hermetyzacja</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dziedziczenie">Dziedziczenie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polimorfizm">Polimorfizm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradygmat-1-generalizacja">Paradygmat 1 - Generalizacja:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moduly">Moduły</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wlasne-moduly-i-bilioteki-paczki">Własne moduły i bilioteki (paczki)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kamil Smolak
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
