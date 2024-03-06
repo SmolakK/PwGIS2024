@@ -1,7 +1,0 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
-format: jb-book
-root: 1. PwGIS 1
-chapters:
-- file: 1. PwGIS 1 - Lista Zadań
