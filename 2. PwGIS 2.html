@@ -1,0 +1,966 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Moduł 2 - QGIS Wprowadzenie &#8212; Programowanie w systemach GIS 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '2. PwGIS 2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Moduł 2 - Lista Zadań" href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html" />
+    <link rel="prev" title="Moduł 1 - Lista Zadań" href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="1.%20PwGIS%201.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="1.%20PwGIS%201.html">
+                    Wprowadzenie
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html">Moduł 1 - Lista Zadań</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Moduł 2 - QGIS Wprowadzenie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html">Moduł 2 - Lista Zadań</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F2. PwGIS 2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/2. PwGIS 2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Moduł 2 - QGIS Wprowadzenie</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#co-to-jest-qgis">Co to jest QGIS?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#przykladowe-zastosowania-pythona-w-qgis">Przykładowe zastosowania Pythona w  QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programowanie-w-qgis">Programowanie w QGIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsola">Konsola</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pluginy">Pluginy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wlasne-aplikacje">Własne aplikacje</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-qgisa">API QGISa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pierwszy-kod-w-qgis">Pierwszy kod w QGIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projekty-klasa-qgsproject">Projekty - klasa QgsProject</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inne-moduly-api-qgis">Inne moduły API QGIS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-warstwy-wektorowej">Import warstwy wektorowej</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-warstwy-rastrowej">Import warstwy rastrowej</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warstwy-w-qgsproject">Warstwy w QgsProject</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obsluga-warstw-danych">Obsługa warstw danych</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usuwanie-warstw">Usuwanie warstw</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-warstw">Lista warstw</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wybor-aktywnej-warstwy">Wybór aktywnej warstwy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biblioteka-os">Biblioteka OS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polecenie-walk">Polecenie walk</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dodatek-do-cwiczen-obsluga-warstw-wektorowych-szczegoly-warstwy">Dodatek do ćwiczeń: Obsługa warstw wektorowych - szczegóły warstwy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atrybuty">Atrybuty:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obiekty">Obiekty:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modul-2-qgis-wprowadzenie">
+<h1>Moduł 2 - QGIS Wprowadzenie<a class="headerlink" href="#modul-2-qgis-wprowadzenie" title="Permalink to this heading">#</a></h1>
+<section id="co-to-jest-qgis">
+<h2>Co to jest QGIS?<a class="headerlink" href="#co-to-jest-qgis" title="Permalink to this heading">#</a></h2>
+<p>W ramach dzisiejszego wykładu zapoznamy się z głównym i najważniejszym elementem naszego przedmiotu Programowanie w <b>GIS</b>. Jako, że programowanie już było, czas na dodanie do niego GISu.</p>
+<p>Programować będziemy w oprogramowaniu QGIS3 (dostępne na: <a class="reference external" href="https://www.qgis.org/pl/site/">https://www.qgis.org/pl/site/</a>)</p>
+<p>QGIS to środowisko Open Source systemu informacji przestrzennej, które dzięki swojej otwartości jest całkowicie modyfikowalne - i to w Pythonie.</p>
+<p>Należy pobrać odpowiednią dla naszego systemu wersję (32-bit lub 64-bit) i zainstalować zgodnie z poleceniami instalatora. Należy upewnić się, że mamy zainstalowane oba narzędzia z poniższego obrazka.</p>
+<img src="QGISy.png"/><p>Możemy sprawdzić czy QGIS działa:</p>
+<img src='qgis.png'/></section>
+<section id="przykladowe-zastosowania-pythona-w-qgis">
+<h2>Przykładowe zastosowania Pythona w  QGIS<a class="headerlink" href="#przykladowe-zastosowania-pythona-w-qgis" title="Permalink to this heading">#</a></h2>
+<p>Python wprowadzony został w QGIS już w wersji 0.9 (obecnie mamy 3.36 - od 3 obsługuje Python 3).</p>
+<p>QGIS udostępnia szereg narzędzi przestrzennych, które możemy wykorzystać wedle własnego uznania by rozwiązywać nasze problemy.</p>
+<p><b>Przykładowo:</b> możemy wykorzystać metody analiz przestrzennych - przecięcie, wybieranie atrybutów przez lokalizację łącznie z innymi bilbiotekami Pythona, aby stworzyć własny model klasyfikacji zdjęć lotniczych. Praca ta będzie o wiele łatwiejsza ze względu na georeferencję, którą QGIS ułatwia.</p>
+<p><b> Inny przykład: </b> możemy wykorzystać QGISa i jego możliwości wizualizacji do stworzenia narzędzia do symulacji funkcjonowania miast - ładować dane, obliczać przepływy ludności, tworzyć mapy według własnej wizji.</p>
+<p>Programowanie umożliwia rozwinięcie możliwości QGISa do zadań, które z obecnie dostępnymi narzędziami nie byłyby możliwe lub byłyby bardzo żmudne.</p>
+</section>
+<section id="programowanie-w-qgis">
+<h2>Programowanie w QGIS<a class="headerlink" href="#programowanie-w-qgis" title="Permalink to this heading">#</a></h2>
+<p>QGIS umożliwia programowanie na 3 sposoby:</p>
+<ol>
+    <li>Skryptowanie w konsoli</li>
+    <li>Tworzenie pluginów</li>
+    <li>Tworzenie własnych aplikacji z wykorzystaniem komponentów QGISa</li>
+</ol><section id="konsola">
+<h3>Konsola<a class="headerlink" href="#konsola" title="Permalink to this heading">#</a></h3>
+<p>Umożliwia pisanie skryptów (nie funkcjonalnych wtyczek, których zachowanie możemy dowolnie modyfikować) wewnątrz QGISa. Możemy pracować na obecnie załadowanych danych lub oprogramować ładowanie i szybkie przetwarzanie danych (przydatne gdy mamy do przetworzenia wiele danych, przykładowo przycięcie 1000 warstw do pewnego obszaru).</p>
+<p>W otwartej konsoli możemy pisać dowolny kod Pythona jak również mieć dostęp do specjalnych funkcji QGISa</p>
+<img src='console.png'/><p>Możliwe jest pisanie kodu i wywoływanie zmiennych w oknie tymaczasowym lub pisanie pełnych skryptów, które możemy uruchamiać wielokrotnie.</p>
+<img src='console2.png'/></section>
+<section id="pluginy">
+<h3>Pluginy<a class="headerlink" href="#pluginy" title="Permalink to this heading">#</a></h3>
+<p>Pluginy służą do rozszerzania funkcjonalności QGIS, tworzenia nowych narzędzi. Takie narzędzia są właśnie tworzone i udostępniane przez społeczność QGIS za pomocą repozytorium wtyczek (odpowiednik Toolbox w ArcGIS).</p>
+<img src='wtyczki.png'/><p>Przygotowanie pluginu do QGISa wymaga stworzenia:</p>
+<ul>
+    <li>modułów - jak w bibliotece progamistycznej</li>
+    <li>interfejsu graficznego użytkownika</li>
+</ul>
+Struktura jest z góry ustalona.
+<p>Poniżej przykładowa wtyczka:</p>
+<img src='app.png'/><p>Każdy plugin musi zawierać ustalone pliki w folderze żeby został wczytany. Są to elementy, jakie musi zawierać moduł Python, aby został przez interpreter odnaleziony, a wiec plik <span class="math notranslate nohighlight">\(__init__.py\)</span> oraz plik interfejsu oraz kodu wykonywalnego:</p>
+<ul>
+    <li>$__init__.py$ - inicjalizacyjny (nawet jeśli pusty)</li>
+    <li>form.py - z interfejsem graficznym</li>
+    <li>plik z kodem wykonywalnym</li>
+</ul>
+<p>Powinien być dołączony plik z metadanymi <span class="math notranslate nohighlight">\(metadata.txt\)</span></p>
+</section>
+<section id="wlasne-aplikacje">
+<h3>Własne aplikacje<a class="headerlink" href="#wlasne-aplikacje" title="Permalink to this heading">#</a></h3>
+<p>Możliwe jest używanie komponentów QGISa jak bilbioteki programistycznej i używanie jego narzędzi we własnych kodach, aplikacjach i zastosowaniach.</p>
+<p>Odbywa się to po prostu poprzez import bilbiotek qgisa, na przykład:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s2">&quot;/path/to/qgis/installation&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">qgs</span> <span class="o">=</span> <span class="n">QgsApplication</span><span class="p">([],</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">qgis</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
+<span class="c1">#kod tutaj</span>
+<span class="n">qgis</span><span class="o">.</span><span class="n">exitQgis</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s2">&quot;/path/to/qgis/installation&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">qgs</span> <span class="o">=</span> <span class="n">QgsApplication</span><span class="p">([],</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;qgis&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="api-qgisa">
+<h2>API QGISa<a class="headerlink" href="#api-qgisa" title="Permalink to this heading">#</a></h2>
+<p>Aby pracować z QGIS w Python musimy zapoznać się z jego API</p>
+<h3>API</h3>
+<p>API to Application Programming Interface, czyli interfejs programistyczny aplikacji. To zestaw ściśle określonych reguł i poleceń (wraz z opisem), który informuje w jaki sposób moduły oprogramowania komunikują się ze sobą, jakie mają funkcjonalności. Interfejs pozwala na dostęp do nich i na ich wykorzystanie.</p>
+<p>API udostępnia klasy wraz z metodami, funkcje, typy danych (w końcu to też klasy) oraz protokoły komunikacyjne.</p>
+<h3>QGIS API</h3>
+<p>Dostępne jest pod: <a class="reference external" href="https://qgis.org/api/">https://qgis.org/api/</a></p>
+<p>Oczywiście wersji QGIS jest dużo i różnią się między sobą (zwłacza API), dlatego zawsze musimy odnaleźć dokumentację dla swojej wersji.</p>
+<img src="qgisapi.png"/><p>Należy pamiętać, że wciąż piszemy w języku obiektowym. Wszystko zatem jest w QGISie obiektem - projekty, warstwy, dane rastrowe, dane wektorowe, każdy punkty, linia i wielokąt. Każdy ma swoje atrybuty i parametry - wszystko opisane jest w API.</p>
+<p>API zaprojektowane jest zgodnie z paradygmatami programowania obiektowego - klasy są heremetyczne, istnieją klasy abstrakcyjne i dziedziczące. Funkcje są polimorficzne. Spójrzmy na przykładowy fragment relacji z QgsAPI:</p>
+<img width=800 src="drzewo.png"/><p>Ten (nieco niskiej rozdzielczości) obraz przedstawia relację pomiędzy warstwami danych QGISa a klasami abstrakcyjnymi.</p>
+<p>W QGISie znajdziemy 4 rodzaje warstw -</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mesh, 
+Plugin, 
+Raster, 
+Vector. 
+</pre></div>
+</div>
+<p>O ile dwie pierwsze nas nie interesują (mają dośc specyficzne zastosowania) to z dwiema ostatnimi będziemy dużo pracować. Są to odpowiednio warstwa danych rastrowych oraz wektorowych.</p>
+<p>Każda klasa warstwy dziedziczy po abstrakcyjnej klasie - QgsMapLayer, czyli abstrakcji warstwy danych w QGISie. Zawiera ona cechy i metody wspólne dla każdej warstwy. Ta z kolei dziedziczy po bardziej abstrakcyjnej klasie QObject.</p>
+<p><b> QObject </b> - QGIS jest zbudowany na podstawie oprogramowania Qt, które służy do tworzenia intefejsów graficznych (GUI - Graphical User Interface) dla Pythona (do tego jest nam potrzebny QtDesigner pokazany na początku wykładu, będziemy takie interfejsy projektować).</p>
+<p>QObject to element tej biblioteki, który przechowuje dowolny obiekt zaprojektowanego interfejsu. Posiada on takie atrybuty jak:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>miejsce w pamięci
+nazwa
+</pre></div>
+</div>
+<p>Oraz metody jak:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>uruchom inny obiekt połączony
+</pre></div>
+</div>
+<p><b> QgsMapLayer </b> - to już obiekt QGISa, abstrakcja warstwy danych. Posiada takie atrybuty jak:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Stan warstwy (usunięta, obecna)
+</pre></div>
+</div>
+<p>Oraz metody jak:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Określ układ odniesienia
+Określ zakres przetrzenny
+...
+</pre></div>
+</div>
+<p><b> QgsVectorLayer </b> - to warstwa przechowujące dane wektorowe (i jedyna z tych 3, którą tak naprawdę w QGIS obsługujemy). Jako, że jest zaprojektowana do pracy z wektorami, to określa metody i atrybuty typowe dla tego typu danych (oczywiście dziedziczy wszystkie powyższe):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Stylizacja
+Czy jest edytowalna
+</pre></div>
+</div>
+<p>i metody:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>zmień atrybuty
+zmień geometrię
+...
+</pre></div>
+</div>
+<p><em>Od teraz będziemy śledzić najważniejsze komponenty API QGIS i będziemy przyglądać się jego funkcjonalnościom.</em></p>
+</section>
+<section id="pierwszy-kod-w-qgis">
+<h2>Pierwszy kod w QGIS<a class="headerlink" href="#pierwszy-kod-w-qgis" title="Permalink to this heading">#</a></h2>
+<p>Na pierwszy ogień:</p>
+<section id="projekty-klasa-qgsproject">
+<h3>Projekty - klasa QgsProject<a class="headerlink" href="#projekty-klasa-qgsproject" title="Permalink to this heading">#</a></h3>
+<p>Czyli ładowanie projektów. Czasem istnieje potrzeba podczytania całego projektu.</p>
+<p>Klasa QgsProject umożliwia ładowanie i zapisywanie projektów - plików *.qgs</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="n">QgsProject</span> <span class="c1">#importujemy tylko klasę QgsProject</span>
+<span class="n">project</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span> <span class="c1">#tworzymy instancję projektu. W QGIS3 już nie jest to obowiązkowe</span>
+<span class="c1">#project jest pusty</span>
+<span class="n">project</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;sciezka_do_pliku&quot;</span><span class="p">)</span> <span class="c1">#otwieramy projekt</span>
+ 
+<span class="n">project</span><span class="o">.</span><span class="n">write</span><span class="p">()</span> <span class="c1">#zapisujemy do tego samego pliku</span>
+<span class="n">project</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;sciezka_do_zapisu&quot;</span><span class="p">)</span> <span class="c1">#zapisujemy projekt do nowego pliku</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="n">QgsProject</span> <span class="c1">#importujemy tylko klasę QgsProject</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">project</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span> <span class="c1">#tworzymy instancję projektu. W QGIS3 już nie jest to obowiązkowe</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1">#project jest pusty</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;qgis&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zatem otwieranie i zapisywanie projektów odbywa się za pomocą polecenia <span class="math notranslate nohighlight">\(read\)</span> oraz <span class="math notranslate nohighlight">\(write\)</span></p>
+</section>
+<section id="inne-moduly-api-qgis">
+<h3>Inne moduły API QGIS<a class="headerlink" href="#inne-moduly-api-qgis" title="Permalink to this heading">#</a></h3>
+<ul>
+    <li>qgis.core zawiera podstawowe funkcjonalności QGISa</li>
+    <li>qgis.gui zawiera widgety GUI - czyli okna, paski, ikonki i pozwala na ich edycję i wykorzystanie we własnych pluginach</li>
+    <li>qgis.analysis udostępnia narzędzia analiz przestrzennych </li>
+    <li>MapComposer to klasa która pozwala na tworzenie własnych kompozycji mapowych i wydrków</li>
+    <li>Network Analyst udostępnia narzędzia analiz sieciowych/grafowych</li>
+</ul>
+</section>
+<section id="import-warstwy-wektorowej">
+<h3>Import warstwy wektorowej<a class="headerlink" href="#import-warstwy-wektorowej" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="n">QgsVectorLayer</span> <span class="c1">#importujemy QgsVectorLayer, klasę warstw wektorowych</span>
+<span class="n">vlayer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s2">&quot;sciezka_do_warstwy&quot;</span><span class="p">,</span><span class="s2">&quot;Nazwa warstwy&quot;</span><span class="p">,</span><span class="s2">&quot;ogr&quot;</span><span class="p">)</span> <span class="c1">#ogr to moduł obsługujący warstwy wektorowe, nazwa wyświetlana jest wewnątrz QGIS</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Po takim podczytaniu warstwa <b>nie wyświetli się</b>, dlatego też by ją dodać należy ją dodać do mapy. Odbywa się to za pomocą instancji <span class="math notranslate nohighlight">\(iface\)</span>.</p>
+<p>Instancja iface - czyli interfejs, to interfejs graficzny, który widzimy, gdy korzystamy z QGISa.</p>
+<p>Aby od razu załadować warstwę i dodać warstwę do interfejsu należy zastosować polecenie:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vlayer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">addVectorLayer</span><span class="p">(</span><span class="s2">&quot;sciezka_do_warstwy&quot;</span><span class="p">,</span><span class="s2">&quot;Nazwa warstwy&quot;</span><span class="p">,</span><span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-warstwy-rastrowej">
+<h3>Import warstwy rastrowej<a class="headerlink" href="#import-warstwy-rastrowej" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rlayer</span> <span class="o">=</span> <span class="n">QgsRasterLayer</span><span class="p">(</span><span class="s2">&quot;sciezka_do_pliku&quot;</span><span class="p">,</span><span class="s2">&quot;Nazwa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>LUB:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iface</span><span class="o">.</span><span class="n">addRasterLayer</span><span class="p">(</span><span class="s2">&quot;sciekza_do_liku&quot;</span><span class="p">,</span><span class="s2">&quot;Nazwa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="warstwy-w-qgsproject">
+<h3>Warstwy w QgsProject<a class="headerlink" href="#warstwy-w-qgsproject" title="Permalink to this heading">#</a></h3>
+<p>Jeśli pracujemy w QgsProject, wtedy  możemy dodać warstwy z pamięci:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">rlayer</span><span class="p">)</span> <span class="c1">#dodwanie</span>
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">removeMapLayer</span><span class="p">(</span><span class="n">rlayer</span><span class="o">.</span><span class="n">id</span><span class="p">())</span> <span class="c1">#usuwanie</span>
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayers</span><span class="p">()</span> <span class="c1">#lista warstw</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="obsluga-warstw-danych">
+<h3>Obsługa warstw danych<a class="headerlink" href="#obsluga-warstw-danych" title="Permalink to this heading">#</a></h3>
+<section id="usuwanie-warstw">
+<h4>Usuwanie warstw<a class="headerlink" href="#usuwanie-warstw" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">projekt</span><span class="o">.</span><span class="n">removeMapLayer</span><span class="p">(</span><span class="n">vlayer</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lista-warstw">
+<h4>Lista warstw<a class="headerlink" href="#lista-warstw" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">projekt</span><span class="o">.</span><span class="n">mapLayers</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="wybor-aktywnej-warstwy">
+<h4>Wybór aktywnej warstwy<a class="headerlink" href="#wybor-aktywnej-warstwy" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="biblioteka-os">
+<h2>Biblioteka OS<a class="headerlink" href="#biblioteka-os" title="Permalink to this heading">#</a></h2>
+<p>Do pracy z scieżkami plików przyda nam się bilioteka os - pozwala ona na przeglądanie struktury plików w naszym systemie lub na serwerze. Często istnieje potrzeba ładowania kolejno różnych warstw z różnych ścieżek. Dzięki tej bibliotece jesteśmy to w stanie zautomatyzować.</p>
+<p>Najbardziej przydatne polecenia <span class="math notranslate nohighlight">\(walk, join\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sciezka</span> <span class="o">=</span> <span class="s1">&#39;sciezka&#39;</span>
+<span class="n">plik</span> <span class="o">=</span> <span class="s1">&#39;plik&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pelna</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sciezka</span><span class="p">,</span><span class="n">plik</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pelna</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sciezka\plik
+</pre></div>
+</div>
+</div>
+</div>
+<p>os.path.basename(pelna) #zwraca nazwe pliku</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">pelna</span><span class="p">)</span> <span class="c1">#ścieżka absolutna</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;D:\\GitHub\\PwGIS2024\\sciezka\\plik&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">pelna</span><span class="p">)</span> <span class="c1">#ściezka do foldderu</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;sciezka&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="polecenie-walk">
+<h3>Polecenie walk<a class="headerlink" href="#polecenie-walk" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">root</span><span class="p">,</span><span class="n">directory</span><span class="p">,</span><span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">sciezka</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ffile</span> <span class="ow">in</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;.shp&#39;</span> <span class="ow">in</span> <span class="n">ffile</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">ffile</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">sciezka</span><span class="p">))</span> <span class="c1">#tylko główny folder</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StopIteration</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">Input In [11],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">next</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">sciezka</span><span class="p">))</span>
+
+<span class="ne">StopIteration</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="dodatek-do-cwiczen-obsluga-warstw-wektorowych-szczegoly-warstwy">
+<h2>Dodatek do ćwiczeń: Obsługa warstw wektorowych - szczegóły warstwy<a class="headerlink" href="#dodatek-do-cwiczen-obsluga-warstw-wektorowych-szczegoly-warstwy" title="Permalink to this heading">#</a></h2>
+<p>Uzyskiwanie dostępu do danych:</p>
+<section id="atrybuty">
+<h3>Atrybuty:<a class="headerlink" href="#atrybuty" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Przegląd atrybutów</span>
+<span class="k">for</span> <span class="n">pole</span> <span class="ow">in</span> <span class="n">drogi</span><span class="o">.</span><span class="n">fields</span><span class="p">():</span>
+	<span class="nb">print</span><span class="p">(</span><span class="n">pole</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">pole</span><span class="o">.</span><span class="n">typeName</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="obiekty">
+<h3>Obiekty:<a class="headerlink" href="#obiekty" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Pozyskanie obiektów na warstwie</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()</span> <span class="c1">#zwraca iterator, nie listę, można się dopiero przez nią iterować</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">feature</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">budynki</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()][:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obiekt</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+    
+<span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obiekt</span><span class="o">.</span><span class="n">geometry</span><span class="p">())</span> <span class="c1">#Zwraca klasę geometrii</span>
+
+<span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obiekt</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">length</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obiekt</span><span class="o">.</span><span class="n">attributes</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obiekt</span><span class="p">[</span><span class="c1">#nazwa_atrybutu])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Moduł 1 - Lista Zadań</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Moduł 2 - Lista Zadań</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#co-to-jest-qgis">Co to jest QGIS?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#przykladowe-zastosowania-pythona-w-qgis">Przykładowe zastosowania Pythona w  QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programowanie-w-qgis">Programowanie w QGIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsola">Konsola</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pluginy">Pluginy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wlasne-aplikacje">Własne aplikacje</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-qgisa">API QGISa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pierwszy-kod-w-qgis">Pierwszy kod w QGIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projekty-klasa-qgsproject">Projekty - klasa QgsProject</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inne-moduly-api-qgis">Inne moduły API QGIS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-warstwy-wektorowej">Import warstwy wektorowej</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-warstwy-rastrowej">Import warstwy rastrowej</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warstwy-w-qgsproject">Warstwy w QgsProject</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obsluga-warstw-danych">Obsługa warstw danych</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usuwanie-warstw">Usuwanie warstw</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-warstw">Lista warstw</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wybor-aktywnej-warstwy">Wybór aktywnej warstwy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biblioteka-os">Biblioteka OS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polecenie-walk">Polecenie walk</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dodatek-do-cwiczen-obsluga-warstw-wektorowych-szczegoly-warstwy">Dodatek do ćwiczeń: Obsługa warstw wektorowych - szczegóły warstwy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atrybuty">Atrybuty:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obiekty">Obiekty:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kamil Smolak
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
