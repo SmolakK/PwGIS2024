@@ -5,3 +5,5 @@ format: jb-book
 root: 1. PwGIS 1
 chapters:
 - file: 1. PwGIS 1 - Lista Zadań
+- file: 2. PwGIS 2
+- file: 2. PwGIS 2 - Lista Zadań
