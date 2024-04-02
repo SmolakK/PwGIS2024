@@ -172,6 +172,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html">Moduł 1 - Lista Zadań</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Moduł 2 - QGIS Wprowadzenie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html">Moduł 2 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203.html">Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html">Moduł 3 - Lista Zadań</a></li>
 </ul>
 
     </div>
@@ -684,8 +686,20 @@ zmień geometrię
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sciezka</span> <span class="o">=</span> <span class="s1">&#39;sciezka&#39;</span>
-<span class="n">plik</span> <span class="o">=</span> <span class="s1">&#39;plik&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sciezka</span> <span class="o">=</span> <span class="s1">&#39;folder&#39;</span>
+<span class="n">plik</span> <span class="o">=</span> <span class="s1">&#39;plik.shp&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sciezka</span><span class="p">,</span><span class="n">podsciezka</span><span class="p">,</span><span class="n">plik</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;D:\\folder\\folder\\plik.shp&#39;
 </pre></div>
 </div>
 </div>
@@ -704,12 +718,23 @@ zmień geometrię
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sciezka\plik
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>folder\plik.shp
 </pre></div>
 </div>
 </div>
 </div>
-<p>os.path.basename(pelna) #zwraca nazwe pliku</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">pelna</span><span class="p">)</span> <span class="c1">#zwraca nazwe pliku</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;plik.shp&#39;
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">pelna</span><span class="p">)</span> <span class="c1">#ścieżka absolutna</span>
@@ -717,7 +742,7 @@ zmień geometrię
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;D:\\GitHub\\PwGIS2024\\sciezka\\plik&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;D:\\GitHub\\PwGIS2024\\folder\\plik.shp&#39;
 </pre></div>
 </div>
 </div>
@@ -729,13 +754,28 @@ zmień geometrię
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;sciezka&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;folder&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <section id="polecenie-walk">
 <h3>Polecenie walk<a class="headerlink" href="#polecenie-walk" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;D:\NE1_50M_SR_W&#39;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ff</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;.tif&#39;</span> <span class="ow">in</span> <span class="n">ff</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">ff</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\NE1_50M_SR_W\NE1_50M_SR_W.tif
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">root</span><span class="p">,</span><span class="n">directory</span><span class="p">,</span><span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">sciezka</span><span class="p">):</span>

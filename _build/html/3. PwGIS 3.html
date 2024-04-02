@@ -1,0 +1,1047 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności &#8212; Programowanie w systemach GIS 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3. PwGIS 3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Moduł 3 - Lista Zadań" href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html" />
+    <link rel="prev" title="Moduł 2 - Lista Zadań" href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="1.%20PwGIS%201.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="1.%20PwGIS%201.html">
+                    Wprowadzenie
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html">Moduł 1 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202.html">Moduł 2 - QGIS Wprowadzenie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html">Moduł 2 - Lista Zadań</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html">Moduł 3 - Lista Zadań</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F3. PwGIS 3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/3. PwGIS 3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#przypomnienie-co-juz-wiemy">Przypomnienie - co już wiemy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warstwy-rastrowe-przypomnienie-i-nowe-funkcjonalnosci">Warstwy rastrowe - przypomnienie i nowe funkcjonalności</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dodawanie-i-usuwanie-warstwy">Dodawanie i usuwanie warstwy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wlasciwosci-warstwy">Właściwości warstwy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pytanie">Pytanie:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pobieranie-danych-z-rastra">Pobieranie danych z rastra</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Pytanie:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warstwy-wektorowe-przypomnienie-i-nowe-funkcjonalnosci">Warstwy wektorowe - przypomnienie i nowe funkcjonalności</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ladowanie-danych-przypomnienie">Ładowanie danych - przypomnienie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pozyskanie-obiektow-na-warstwie-przypomnienie">Pozyskanie obiektów na warstwie - przypomnienie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selekcja-obiektow-nowosc">Selekcja obiektów - NOWOŚĆ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wlasciwosci-selekcji">Właściwości selekcji</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modyfikacja-danych">Modyfikacja danych</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klasy-ktore-dotychczas-uzywalismy">Klasy które dotychczas używaliśmy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#odswiezenie-wizualizacji">Odświeżenie wizualizacji</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dodawanie-nowych-obiektow">Dodawanie nowych obiektów</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qgsgeometry">QgsGeometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wkt-well-known-text-representation-of-geometry">WKT - Well-known text representation of geometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wkb-well-known-binary">WKB - Well-known binary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tryb-edycji">Tryb edycji</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modul-3-q-gis-warstwy-projekty-podstawowe-funkcjonalnosci">
+<h1>Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności<a class="headerlink" href="#modul-3-q-gis-warstwy-projekty-podstawowe-funkcjonalnosci" title="Permalink to this heading">#</a></h1>
+<section id="przypomnienie-co-juz-wiemy">
+<h2>Przypomnienie - co już wiemy<a class="headerlink" href="#przypomnienie-co-juz-wiemy" title="Permalink to this heading">#</a></h2>
+<p>Wiemy już, że są przynajmniej 3 sposoby w jaki możemy programować w QGIS.</p>
+<p>Na wykładzie wykorzystywaliśmy już 4 podstawowe klasy, których będziemy używać:</p>
+<ul>
+    <li><b>QgsProject</b> - klasa projektu </li>
+    <li><b>QgsVectorLayer</b> - klasa warstwy wektorowej </li>
+    <li><b>QgsRasterLayer</b> - klasa warstwy rastrowej </li>
+    <li><b>iface</b> - instancja interfejsu aplikacji </li>
+</ul>
+<p>Będziemy się im przyglądać z bliższej perspektywy. Rozpocznijmy od przetestowania kilku podstawowych funkcjonalności API.</p>
+</section>
+<section id="warstwy-rastrowe-przypomnienie-i-nowe-funkcjonalnosci">
+<h2>Warstwy rastrowe - przypomnienie i nowe funkcjonalności<a class="headerlink" href="#warstwy-rastrowe-przypomnienie-i-nowe-funkcjonalnosci" title="Permalink to this heading">#</a></h2>
+<section id="dodawanie-i-usuwanie-warstwy">
+<h3>Dodawanie i usuwanie warstwy<a class="headerlink" href="#dodawanie-i-usuwanie-warstwy" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iface</span><span class="o">.</span><span class="n">addRasterLayer</span><span class="p">(</span><span class="n">sciezka_do_pliku</span><span class="p">,</span><span class="s2">&quot;NE1_50M_SR_W.tif&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">iface</span><span class="o">.</span><span class="n">addRasterLayer</span><span class="p">(</span><span class="n">sciezka_do_pliku</span><span class="p">,</span><span class="s2">&quot;NE1_50M_SR_W.tif&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;iface&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rlayer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">addRasterLayer</span><span class="p">(</span><span class="n">sciezka_do_pliku</span><span class="p">,</span><span class="s2">&quot;NE1_50M_SR_W.tif&quot;</span><span class="p">)</span>
+<span class="n">projekt</span><span class="o">.</span><span class="n">removeMapLayer</span><span class="p">(</span><span class="n">rlayer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="wlasciwosci-warstwy">
+<h2>Właściwości warstwy<a class="headerlink" href="#wlasciwosci-warstwy" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rlayer</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="c1"># wyskosc</span>
+
+<span class="n">rlayer</span><span class="o">.</span><span class="n">height</span><span class="p">()</span> <span class="c1"># szerokosc</span>
+
+<span class="n">rlayer</span><span class="o">.</span><span class="n">extent</span><span class="p">()</span> <span class="c1"># zakres</span>
+
+<span class="n">rlayer</span><span class="o">.</span><span class="n">extent</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span>
+<span class="n">rlayer</span><span class="o">.</span><span class="n">rasterType</span><span class="p">()</span> <span class="c1">#0 = Skala szarosci, 1 = (single band), 2 = Multiband</span>
+
+<span class="n">rlayer</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span> <span class="c1"># poprawna</span>
+
+<span class="n">rlayer</span><span class="o">.</span><span class="n">bandCount</span><span class="p">()</span> <span class="c1"># liczba pasm</span>
+
+<span class="n">rlayer</span><span class="o">.</span><span class="n">moja</span><span class="o">.</span><span class="n">rasterUnitsPerPixelX</span><span class="p">()</span> <span class="c1">#liczba jednostek na piksel w osi X</span>
+
+<span class="n">rlayer</span><span class="o">.</span><span class="n">moja</span><span class="o">.</span><span class="n">rasterUnitsPerPixelY</span><span class="p">()</span> <span class="c1">#liczba jednostek na piksel w osi Y</span>
+
+<span class="n">rlayer</span><span class="o">.</span><span class="n">metadata</span><span class="p">()</span> <span class="c1"># QgsMetadata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="pytanie">
+<h3>Pytanie:<a class="headerlink" href="#pytanie" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Ile jest łącznie pikseli?</p></li>
+<li><p>Jaki jest zakres przestrzenny w osi X?</p></li>
+</ol>
+</section>
+<section id="pobieranie-danych-z-rastra">
+<h3>Pobieranie danych z rastra<a class="headerlink" href="#pobieranie-danych-z-rastra" title="Permalink to this heading">#</a></h3>
+<p>Wykonujemy z wykorzystaniem metody dataProvider() <b> będziemy jej używać często </b> - więc dobrze to zapamiętajmy!</p>
+<p>dataProvider() pozwala na dostęp do plików i bazy danych, która jest przypisana do danej warstwy. Jest to metoda dostępu do jej danych!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ident</span> <span class="o">=</span> <span class="n">rlayer</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span><span class="o">.</span><span class="n">identify</span><span class="p">(</span><span class="n">QgsPointXY</span><span class="p">(</span><span class="mi">453138</span><span class="p">,</span><span class="mi">81225</span><span class="p">),</span> <span class="n">QgsRaster</span><span class="o">.</span><span class="n">IdentifyFormatValue</span><span class="p">)</span>
+<span class="n">ident</span><span class="o">.</span><span class="n">results</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Pytanie:<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Jak odczytać wszystkie piksele w bloku (tzw. BoundingBox)?</p></li>
+</ol>
+</section>
+</section>
+<section id="warstwy-wektorowe-przypomnienie-i-nowe-funkcjonalnosci">
+<h2>Warstwy wektorowe - przypomnienie i nowe funkcjonalności<a class="headerlink" href="#warstwy-wektorowe-przypomnienie-i-nowe-funkcjonalnosci" title="Permalink to this heading">#</a></h2>
+<section id="ladowanie-danych-przypomnienie">
+<h3>Ładowanie danych - przypomnienie<a class="headerlink" href="#ladowanie-danych-przypomnienie" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Ładujemy dane</span>
+<span class="n">budynki</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">addVectorLayer</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wektor_folder</span><span class="p">,</span><span class="s2">&quot;Budynki_JG.shp&quot;</span><span class="p">),</span><span class="s2">&quot;drogi&quot;</span><span class="p">,</span><span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#Ładujemy dane</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">budynki</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">addVectorLayer</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wektor_folder</span><span class="p">,</span><span class="s2">&quot;Budynki_JG.shp&quot;</span><span class="p">),</span><span class="s2">&quot;drogi&quot;</span><span class="p">,</span><span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;iface&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pozyskanie-obiektow-na-warstwie-przypomnienie">
+<h3>Pozyskanie obiektów na warstwie - przypomnienie<a class="headerlink" href="#pozyskanie-obiektow-na-warstwie-przypomnienie" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">feature</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">budynki</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()][:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obiekt</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+    
+<span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obiekt</span><span class="o">.</span><span class="n">geometry</span><span class="p">())</span> <span class="c1">#Zwraca klasę geometrii</span>
+
+<span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obiekt</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">length</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obiekt</span><span class="o">.</span><span class="n">attributes</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obiekt</span><span class="p">[</span><span class="c1">#nazwa_atrybutu])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="selekcja-obiektow-nowosc">
+<h3>Selekcja obiektów - NOWOŚĆ<a class="headerlink" href="#selekcja-obiektow-nowosc" title="Permalink to this heading">#</a></h3>
+<p>Wybierz wszystko:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span><span class="o">.</span><span class="n">selectAll</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wybór poprzez zapytanie:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span><span class="o">.</span><span class="n">selectByExpression</span><span class="p">(</span><span class="o">&lt;</span><span class="n">zapytanie</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Zapytanie w &quot;&quot;&quot; &quot;&quot;&quot; (potrójny cudzysłów)
+Nazwy pól w &quot; &quot; (cudzysłów)
+Wartości w &#39; &#39; (apostrof)
+Przyrównanie jest pojedynczym znakiem równości!
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span><span class="o">.</span><span class="n">selectByExpression</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;&quot;name&quot;=&#39;Poland&#39;&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span><span class="o">.</span><span class="n">selectByExpression</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; substr(&quot;name&quot;,1,1)  = &#39;O&#39; &quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wybrane obiekty:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selection</span> <span class="o">=</span> <span class="n">warstwy</span><span class="o">.</span><span class="n">selectedFeatures</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Iteracja po selekcji:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">selection</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="wlasciwosci-selekcji">
+<h3>Właściwości selekcji<a class="headerlink" href="#wlasciwosci-selekcji" title="Permalink to this heading">#</a></h3>
+<p>Klasa płótna (czyli okna mapy)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pozwala na edycję wyświetlania zaznaczenia:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span><span class="o">.</span><span class="n">setSelectionColor</span><span class="p">(</span><span class="n">QColor</span><span class="p">(</span><span class="s2">&quot;magenta&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lub w HEX RGB:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span><span class="o">.</span><span class="n">setSelectionColor</span><span class="p">(</span><span class="n">QColor</span><span class="p">(</span><span class="s2">&quot;#FFFF00&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="modyfikacja-danych">
+<h2>Modyfikacja danych<a class="headerlink" href="#modyfikacja-danych" title="Permalink to this heading">#</a></h2>
+<section id="klasy-ktore-dotychczas-uzywalismy">
+<h3>Klasy które dotychczas używaliśmy<a class="headerlink" href="#klasy-ktore-dotychczas-uzywalismy" title="Permalink to this heading">#</a></h3>
+<p>Używaliśmy klas QGISa:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>QgsProject
+QgsVectorLayer
+QgsRasterLayer
+QgsMapLayer
+QgsField
+QgsFeature
+QgsGeometry
+</pre></div>
+</div>
+<p>i klasy interfejsu, która jest automatycznie zinstancjonowana przy uruchomieniu QGISa:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>iface
+</pre></div>
+</div>
+<p>oraz istotnej metody dostępu do obiektów warstwy, której będziemy dziś sporo używać:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dataProvider()
+</pre></div>
+</div>
+</section>
+<section id="odswiezenie-wizualizacji">
+<h3>Odświeżenie wizualizacji<a class="headerlink" href="#odswiezenie-wizualizacji" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#odświeżanie</span>
+<span class="n">warstwa</span><span class="o">.</span><span class="n">triggerRepaint</span><span class="p">()</span> <span class="c1">#metoda warstwy</span>
+<span class="c1">#LUB</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span> <span class="c1">#metoda intefejsu, mapCanvas() zwraca referencję do &quot;płótna&quot; mapy</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dodawanie-nowych-obiektow">
+<h3>Dodawanie nowych obiektów<a class="headerlink" href="#dodawanie-nowych-obiektow" title="Permalink to this heading">#</a></h3>
+<p>Zakładamy, że pracujemy na jakiejś warstwie wektorowej o charakterze LineString. Do wykładu dołączyłem taką warstwę.</p>
+<p>Każdy obiekt (QgsFeature) warstwy wektorowej (QgsVectorLayer) ma:</p>
+<ul>
+    <li> Atrybuty </li>
+    <li> Geometrię (QgsGeometry) </li>
+</ul>
+<p>Przy tworzeniu obiektów należy ustalić oba.</p>
+<p>Najpierw tworzymy pusty obiekt:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat</span> <span class="o">=</span> <span class="n">QgsFeature</span><span class="p">(</span><span class="n">warstwa</span><span class="o">.</span><span class="n">fields</span><span class="p">())</span> <span class="c1">#instancja obiektu QgsFeature, parametrem są pola wartości QgsField warstwy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nie jest jeszcze przypisany do warstwy, zrobimy to później. Teraz nadajemy mu atrybuty oraz goemetrię:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat</span><span class="o">.</span><span class="n">setAttributes</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;G&#39;</span><span class="p">,</span><span class="s1">&#39;H&#39;</span><span class="p">])</span> <span class="c1">#dodajemy atrybuty, ta warstwa ma 8 atrybutów</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">feat</span><span class="o">.</span><span class="n">setAttributes</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;G&#39;</span><span class="p">,</span><span class="s1">&#39;H&#39;</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;feat&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Tworzymy geometrię - czworokąt z czterech punktów</span>
+<span class="n">left_up</span> <span class="o">=</span> <span class="n">QgsPointXY</span><span class="p">(</span><span class="mf">60.00</span><span class="p">,</span><span class="o">-</span><span class="mf">63.89</span><span class="p">)</span>
+<span class="n">left_down</span> <span class="o">=</span> <span class="n">QgsPointXY</span><span class="p">(</span><span class="mf">60.00</span><span class="p">,</span><span class="o">-</span><span class="mf">60.89</span><span class="p">)</span>
+<span class="n">right_down</span> <span class="o">=</span> <span class="n">QgsPointXY</span><span class="p">(</span><span class="mf">62.00</span><span class="p">,</span><span class="o">-</span><span class="mf">60.89</span><span class="p">)</span>
+<span class="n">right_up</span> <span class="o">=</span> <span class="n">QgsPointXY</span><span class="p">(</span><span class="mf">62.00</span><span class="p">,</span><span class="o">-</span><span class="mf">63.89</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [4],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#Tworzymy geometrię - czworokąt z czterech punktów</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">left_up</span> <span class="o">=</span> <span class="n">QgsPointXY</span><span class="p">(</span><span class="mf">60.00</span><span class="p">,</span><span class="o">-</span><span class="mf">63.89</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">left_down</span> <span class="o">=</span> <span class="n">QgsPointXY</span><span class="p">(</span><span class="mf">60.00</span><span class="p">,</span><span class="o">-</span><span class="mf">60.89</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">right_down</span> <span class="o">=</span> <span class="n">QgsPointXY</span><span class="p">(</span><span class="mf">62.00</span><span class="p">,</span><span class="o">-</span><span class="mf">60.89</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;QgsPointXY&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>QgsGeometry to klasa geometrii, która może przyjmować postać punktów, linii i poligonów. Najczęściej budowana jest z punktów, czyli z klasy ([nowa klasa!]) QgsPoint:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>QgsPoint(x,y)
+</pre></div>
+</div>
+<p>Następnie stosujemy jedno z poleceń .from <strong>geometria</strong>, czyli:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fromPolyline, fromPolygonXY, fromPointXY lub fromWKT - czyli typu danych WKT
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">left_up</span><span class="p">,</span> <span class="n">left_down</span><span class="p">,</span> <span class="n">right_down</span><span class="p">,</span> <span class="n">right_up</span><span class="p">,</span> <span class="n">left_up</span><span class="p">]</span>
+<span class="n">geometria</span> <span class="o">=</span> <span class="n">QgsGeometry</span><span class="o">.</span><span class="n">fromPolygonXY</span><span class="p">([</span><span class="n">points</span><span class="p">])</span>
+<span class="n">feat</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">geometria</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Teraz możemy go dodać do warstwy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span><span class="o">.</span><span class="n">addFeatures</span><span class="p">([</span><span class="n">feat</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="qgsgeometry">
+<h3>QgsGeometry<a class="headerlink" href="#qgsgeometry" title="Permalink to this heading">#</a></h3>
+<p>Geometria w QGIS dotyczy warstw wektorowych i jest klasą opisującą właściwości przestrzenne obiektu.</p>
+<p>Geometria może przyjąć trzy rodzaje:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Puntkowa
+Liniowa
+Wielokątowa
+</pre></div>
+</div>
+<p>W QGIS jest kilka typów geometrii przypisanych do tych typów warstw:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Puntkowa - Point lub MultiPoint
+Liniowa - Polyline lub MultiPolyline
+Wielokątowa - Polygon lub MultiPolygon
+</pre></div>
+</div>
+<p>Każda z nich ma własną funkcję konstruującą QgsGeometry: <a class="reference external" href="https://api.qgis.org/api/classQgsGeometry.html#aae8fe6015cafdd4990feff3077881b60">https://api.qgis.org/api/classQgsGeometry.html#aae8fe6015cafdd4990feff3077881b60</a></p>
+</section>
+<section id="wkt-well-known-text-representation-of-geometry">
+<h3>WKT - Well-known text representation of geometry<a class="headerlink" href="#wkt-well-known-text-representation-of-geometry" title="Permalink to this heading">#</a></h3>
+<p>Wygodniej jest stosować format WKT</p>
+<p>To jeden ze standardów OGC, który pozwala na opisanie każdego typu geometrii:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Point (jeden), MultiPoint (kolekcja),
+LineString (jeden), MultiLineString (kolekcja),
+Polygon (jeden), MultiPolygon (kolekcja).
+</pre></div>
+</div>
+<p>Definicja:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Nazwa (x y)
+</pre></div>
+</div>
+<p>Punkt:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>POINT (10 30) - Punkt o współrzędnych x=10 i y = 30
+</pre></div>
+</div>
+<p>Linia:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>LINESTRING (30 10, 10 30) - to linia (prosta) o współrzędnych pierwszego wierzchołka X = 30, Y = 10 i drugiego X = 10, Y = 30
+
+LINESTRING (30 10, 10 30, 40 40) - to linia łamana, o trzech punktach
+</pre></div>
+</div>
+<p>Poligon:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>POLYGON ((30 10, 40 40, 20 20, 10 20, 30 10))
+
+POLYGON ((35 10, 45 45, 15 40, 10 20, 35 10), (20 30, 35 35, 30 20, 20 30))
+
+Pierwsza i ostatnia współrzędna się powtarzają, bo wielobok musi mieć zamkniętą geometrię (czyli ma 4 wierzchołki)
+
+Zapis w podwójnym nawiasie umowżliwia podanie współrzędnych “otworu” w geometrii. Jak w drugim przykładzie.
+
+Kolekcje geometrii skłdają się z przynajmniej podwójnego zagnieżdżenia nawiasów. 
+</pre></div>
+</div>
+<p>Naprawdę niezły przykład jest w tabelce na Wikipedii:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry
+</pre></div>
+</div>
+</section>
+<section id="wkb-well-known-binary">
+<h3>WKB - Well-known binary<a class="headerlink" href="#wkb-well-known-binary" title="Permalink to this heading">#</a></h3>
+<p>Binarny odpowiednik WKT. Zapis tych samych geometrii, ale językiem binarnym. Szybszy w składowaniu o odczytywaniu.</p>
+<p>Przykład zastosowania WKT do kreacji obiektu na warstwie:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wkt_polygon</span> <span class="o">=</span> <span class="s1">&#39;POLYGON ((40.0 -63.89, 60.0 -60.89, 62.0 -60.89, 62.0 -63.89, 40.0 -63.89))&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geometria</span> <span class="o">=</span> <span class="n">QgsGeometry</span><span class="o">.</span><span class="n">fromWkt</span><span class="p">(</span><span class="n">wkt_polygon</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<h2> Usuwanie obiektów </h2>
+<p>Wystarczy podać ich indeks:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span><span class="o">.</span><span class="n">deleteFeatures</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Teraz zmieńmy wartość podanych atrybutów pierwszego obiektu:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;D&#39;</span> <span class="p">}</span> <span class="c1">#pole 1 otrzyma &#39;A&#39;, pole 2 otrzyma &#39;B&#39;, itd.</span>
+<span class="n">warstwa</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span><span class="o">.</span><span class="n">changeAttributeValues</span><span class="p">({</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">attrs</span> <span class="p">})</span> <span class="c1">#obiekt o indeksie nr 1 zostanie zmieniony</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [5],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;D&#39;</span> <span class="p">}</span> <span class="c1">#pole 1 otrzyma &#39;A&#39;, pole 2 otrzyma &#39;B&#39;, itd.</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span><span class="o">.</span><span class="n">changeAttributeValues</span><span class="p">({</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">attrs</span> <span class="p">})</span>
+
+<span class="ne">NameError</span>: name &#39;warstwa&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zmieńmy jeszcze geometrię:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wkt_polygon</span> <span class="o">=</span> <span class="s1">&#39;POLYGON ((60.0 -63.89, 60.0 -60.89, 62.0 -60.89, 62.0 -63.89, 60.0 -63.89))&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geom</span> <span class="o">=</span> <span class="n">QgsGeometry</span><span class="o">.</span><span class="n">fromWkt</span><span class="p">(</span><span class="n">wkt_polygon</span><span class="p">)</span>
+<span class="n">warstwa</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span><span class="o">.</span><span class="n">changeGeometryValues</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="n">geom</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tryb-edycji">
+<h2>Tryb edycji<a class="headerlink" href="#tryb-edycji" title="Permalink to this heading">#</a></h2>
+<p>Ta zmiana jest <b> stała </b>.</p>
+<p>Tryb edycji jest niezbędny do tego, żeby zatwierdzać lub odrzucać zmiany.</p>
+<p>Zmiany dokonane w trybie edycji mogą zostać odwrócone, dlatego też przed każdą decyzją najlepiej skorzystać jest z metod warstwy wektorowej:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>startEditing() - rozpocznij edycje
+commitChanges() - dokonaj zmian
+rollBack() - przywróć zmiany
+
+isEditable() - sprawdź czy warstwa jest edytowalna
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Moduł 2 - Lista Zadań</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Moduł 3 - Lista Zadań</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#przypomnienie-co-juz-wiemy">Przypomnienie - co już wiemy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warstwy-rastrowe-przypomnienie-i-nowe-funkcjonalnosci">Warstwy rastrowe - przypomnienie i nowe funkcjonalności</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dodawanie-i-usuwanie-warstwy">Dodawanie i usuwanie warstwy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wlasciwosci-warstwy">Właściwości warstwy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pytanie">Pytanie:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pobieranie-danych-z-rastra">Pobieranie danych z rastra</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Pytanie:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warstwy-wektorowe-przypomnienie-i-nowe-funkcjonalnosci">Warstwy wektorowe - przypomnienie i nowe funkcjonalności</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ladowanie-danych-przypomnienie">Ładowanie danych - przypomnienie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pozyskanie-obiektow-na-warstwie-przypomnienie">Pozyskanie obiektów na warstwie - przypomnienie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selekcja-obiektow-nowosc">Selekcja obiektów - NOWOŚĆ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wlasciwosci-selekcji">Właściwości selekcji</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modyfikacja-danych">Modyfikacja danych</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klasy-ktore-dotychczas-uzywalismy">Klasy które dotychczas używaliśmy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#odswiezenie-wizualizacji">Odświeżenie wizualizacji</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dodawanie-nowych-obiektow">Dodawanie nowych obiektów</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qgsgeometry">QgsGeometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wkt-well-known-text-representation-of-geometry">WKT - Well-known text representation of geometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wkb-well-known-binary">WKB - Well-known binary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tryb-edycji">Tryb edycji</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kamil Smolak
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
