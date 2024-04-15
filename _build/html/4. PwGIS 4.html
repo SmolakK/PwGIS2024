@@ -1,0 +1,1081 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Moduł 4 - (Q)GIS - szczegółowo o geometrii &#8212; Programowanie w systemach GIS 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '4. PwGIS 4';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Moduł 4 - Lista Zadań" href="4.%20PwGIS%204%20-%20Lista%20Zada%C5%84.html" />
+    <link rel="prev" title="Moduł 3 - Lista Zadań" href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="1.%20PwGIS%201.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="1.%20PwGIS%201.html">
+                    Wprowadzenie
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html">Moduł 1 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202.html">Moduł 2 - QGIS Wprowadzenie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html">Moduł 2 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203.html">Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html">Moduł 3 - Lista Zadań</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Moduł 4 - (Q)GIS - szczegółowo o geometrii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.%20PwGIS%204%20-%20Lista%20Zada%C5%84.html">Moduł 4 - Lista Zadań</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F4. PwGIS 4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/4. PwGIS 4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Moduł 4 - (Q)GIS - szczegółowo o geometrii</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#podsumowanie-dotychczasowej-wiedzy">Podsumowanie dotychczasowej wiedzy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sprawdzanie-typu-geometrii">Sprawdzanie typu geometrii</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operatory-geometrii">Operatory geometrii</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operatory-informacji-geometrycznej">Operatory informacji geometrycznej</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#przyklad-zastosowania-operatorow-geometrycznych-bufor">Przykład zastosowania operatorów geometrycznych - bufor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#przyklad-operatorow-geometrycznych-intersection">Przykład operatorów geometrycznych - intersection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#przyklad-operatorow-logicznych-geometrii">Przykład operatorów logicznych geometrii</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konwersja-jednostek-stopniowych-do-innych">Konwersja jednostek stopniowych do innych</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konwersja-jednostek-w-obliczeniach-geometrii">Konwersja jednostek w obliczeniach geometrii</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacje-warstw">Transformacje warstw</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstra-gratis-do-cwiczen">Ekstra gratis do ćwiczeń:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warstwy-tymczasowe">Warstwy tymczasowe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zapis-warstw">Zapis warstw</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modul-4-q-gis-szczegolowo-o-geometrii">
+<h1>Moduł 4 - (Q)GIS - szczegółowo o geometrii<a class="headerlink" href="#modul-4-q-gis-szczegolowo-o-geometrii" title="Permalink to this heading">#</a></h1>
+<section id="podsumowanie-dotychczasowej-wiedzy">
+<h2>Podsumowanie dotychczasowej wiedzy<a class="headerlink" href="#podsumowanie-dotychczasowej-wiedzy" title="Permalink to this heading">#</a></h2>
+<p>Na ostatnich ćwiczeniach ładowaliśmy warstwy, dokonywaliśmy selekcji i uzyskiwaliśmy dostęp do wartości używając klas warstw wektorowych, rastrowych, projektu QGIS oraz dataProvider przekazującego dane. Na poprzednim wykładzie pokazane były metody dodawania obiektów, atrybutów, modyfikacje geometrii oraz trzy nowe, ważne klasy. Podsumowując:</p>
+<p>Dotychczas mówiliśmy o klasach:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>QgsProject - klasa projektu
+
+QgsVectorLayer - klasa warstwy wektorowej
+
+QgsRaterLayer - klasa warstwy rastrowej
+
+QgsFeature - klasa obiektu warstwy wektorowej
+
+QgsField - klasa pola wartości w atrybutach warstwy wektorowej
+
+QgsGeometry - klasa geometrii obiektu
+
+QVariant - klasa typu danych
+
+iface - odwołanie do klasy interfejsu aplikacji,
+</pre></div>
+</div>
+<p>O klasach geometrii:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>QgsPoint, QgsPointXY,
+
+QgsPolygonXY
+
+QgsPolylineXY
+</pre></div>
+</div>
+<p>Oraz ważnej metodzie dataProvider() dającej dostęp do danych i właściwości obiektów warstw.</p>
+<p>Poznaliśmy również sposoby tworzenia geometrii:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>z koordynatów:
+    
+    punkt = QgsGeometry.fromPointXY(QgsPointXY(1,1)) #Różnica między QgsPoint a QgsPointXY jest taka, że pierwsza wspiera wymiar Z lub M
+    
+    linia = QgsGeometry.fromPolyline([QgsPoint(1,1), QgsPoint(2,2)])
+    
+    polygon = QgsGeometry.fromPolygonXY([[QgsPointXY(1,1),QgsPointXY(2,2), QgsPointXY(2,1)]])
+
+Z WKT:
+
+    geom = QgsGeometry.fromWkt(&quot;POINT(3 4)&quot;)
+
+Z WKB (tego nie było, uzupełniam dla ciekawości, nie będziemy stosować):
+
+    wkb = bytes.fromhex(&quot;010100000000000000000045400000000000001440&quot;) g.fromWkb(wkb)
+</pre></div>
+</div>
+<p>Oraz metody dostępu do geometrii:</p>
+<h3> Dostęp do geometrii: </h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>geometria.asPoint()
+
+geometria.asMultiPoint()
+
+geometria.asPolyline()
+
+geometria.asMultiPolyline()
+
+geometria.asPolygon()
+
+geometria.asMultiPolygon()
+
+geometria.asWkt()
+
+geometria.asWkb()
+</pre></div>
+</div>
+<p>Sprawdźmy to praktyce na paru przykładach. Ładuję do QGIS warstwę nazwaną Budynki_JG.shp. Poniżej zamieszczam kod i wyniki, do własnego przetestowania.</p>
+<p>Na początku otwieram okno konsoli Pythona i edytora:</p>
+<img src='cw6_img/1.png'/><p>Zacznijmy od wybrania jednego obiektu z warstwy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">obiekt</span> <span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()]</span>
+<span class="n">pierwszy_obiekt</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#pierwszy obiekt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">obiekt</span> <span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">pierwszy_obiekt</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="ne">NameError</span>: name &#39;iface&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Odczytujemy jego geometrię:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geom</span> <span class="o">=</span> <span class="n">pierwszy_obiekt</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>print(geom) zwraca:</p>
+<p>&lt;QgsGeometry: MultiPolygon (((15.7402792999999992 50.9030161000000021, 15.74068950000000022 50.90302559999999943, 15.74071329999999946 50.90275609999999773, 15.74046760000000056 50.90274749999999671, 15.74030860000000054 50.90274089999999774, 15.7402792999999992 50.9030161000000021),(15.74040630000000007 50.90285010000000199, 15.74041360000000012 50.90277679999999805, 15.74056419999999967 50.90278289999999828, 15.74055689999999963 50.90285620000000222, 15.74040630000000007 50.90285010000000199)))&gt;</p>
+<p>A to już jak wiemy, zostało zdefiniowane w metodzie <strong>str</strong> klasy QgsGeometry.</p>
+<p>Spójrzmy teraz na inne reprezentacje:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">asMultiPolygon</span><span class="p">())</span> <span class="c1">#oczywiście każda metoda jest do wyświetlania innych obiektów</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Musieliśmy zastosować metodę MultiPolygon - jak widać z <code class="docutils literal notranslate"><span class="pre">print(geom)</span></code> z taką geometrią mamy do czynienia. Wynik:</p>
+<p>[[[&lt;QgsPointXY: POINT(15.7402792999999992 50.9030161000000021)&gt;, &lt;QgsPointXY: POINT(15.74068950000000022 50.90302559999999943)&gt;, &lt;QgsPointXY: POINT(15.74071329999999946 50.90275609999999773)&gt;, &lt;QgsPointXY: POINT(15.74046760000000056 50.90274749999999671)&gt;, &lt;QgsPointXY: POINT(15.74030860000000054 50.90274089999999774)&gt;, &lt;QgsPointXY: POINT(15.7402792999999992 50.9030161000000021)&gt;], [&lt;QgsPointXY: POINT(15.74040630000000007 50.90285010000000199)&gt;, &lt;QgsPointXY: POINT(15.74041360000000012 50.90277679999999805)&gt;, &lt;QgsPointXY: POINT(15.74056419999999967 50.90278289999999828)&gt;, &lt;QgsPointXY: POINT(15.74055689999999963 50.90285620000000222)&gt;, &lt;QgsPointXY: POINT(15.74040630000000007 50.90285010000000199)&gt;]]]</p>
+<p>Jakie daje nam to możliwości? Widzimy że dostaliśmy listę (zagnieżdżoną) obiektów klasy QgsPointXY - w ten sposób mamy dostęp do każdego wierzchołka geometrii obiektu.</p>
+<p>Przyjrzyjmy się tej liście. Widzimy że jest zagnieżdżona 3-krotnie:</p>
+<p>Poziom 1 - bo MultiPolygon - czyli może zawierać wiele wieloboków
+Poziom 2 - bo uwzględnia “otwory” w geometrii
+Poziom 3 - przechowuje kolejne wierzchołki.</p>
+<p>Na poziomie 1 mamy tylko jeden obiekt. Na poziomie 2 mamy dwie listy - pech (lub szczęście) chciało, że pierwszy obiekt jest geometrią z otworem. Dobrze zatem widać, jak działa definicja geometrii wieloboku. Nasz obiekt wygląda tak:</p>
+<p>(Ps. wybrałem go za pomocą polecenia warstwa.selectByIds([pierwszy_obiekt.id()]) - wtedy podświetla się na mapie)</p>
+<img src='cw6_img/2.png'/><p>Aby dostać się do wierzchołka obiektu należy skorzystać indeks. Na przykład pierwszy wierzchołek otworu:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">asMultiPolygon</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sprwadźmy jeszcze reprezentację WKT:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">asWkt</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>MultiPolygon (((15.7402792999999992 50.9030161000000021, 15.74068950000000022 50.90302559999999943, 15.74071329999999946 50.90275609999999773, 15.74046760000000056 50.90274749999999671, 15.74030860000000054 50.90274089999999774, 15.7402792999999992 50.9030161000000021),(15.74040630000000007 50.90285010000000199, 15.74041360000000012 50.90277679999999805, 15.74056419999999967 50.90278289999999828, 15.74055689999999963 50.90285620000000222, 15.74040630000000007 50.90285010000000199)))</p>
+<p>Reprezentacja WKB za wiele nam nie powie (tylko tyle, że jest to binarna reprezentacja):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">asWkb</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>b’\x01\x06\x00\x00\x00\x01\x00\x00\x00\x01\x03\x00\x00\x00\x02\x00\x00\x00\x06\x00\x00\x00\xc1\xcfn\xe3\x05{/&#64;x\xa1\x14\x08\x96sI&#64;/\xfbu\xa7;{/&#64;\xb3\xb9\xc5W\x96sI&#64;\xaal\x0e\xc6&gt;{/&#64;\xdb\xe1\n\x83\x8dsI&#64;\xc7~\xbb\x91\x1e{/&#64;\xdb\x85\xe6:\x8dsI&#64;%\xe5\x93\xba\t{/&#64;|!\x89\x03\x8dsI&#64;\xc1\xcfn\xe3\x05{/&#64;x\xa1\x14\x08\x96sI&#64;\x05\x00\x00\x006\x81\xd8\x88\x16{/&#64;]X\x92\x97\x90sI&#64;\xfa\x06\xcb}\x17{/&#64;4\xcb\xaf0\x8esI&#64;C-\x17;+{/&#64;\xabq\xdbc\x8esI&#64;\x7f\xa7$F*{/&#64;\xd4\xfe\xbd\xca\x90sI&#64;6\x81\xd8\x88\x16{/&#64;]X\x92\x97\x90sI&#64;’</p>
+<p>Dobrze, ale po co nam to?</p>
+<p>W ten sposób możemy wygodnie kopiować i zmieniać geometrię obiektów w QGIS. Tak jak w zadaniu 3 z listy 6.
+Zobaczmy na innym przykładzie (komentarze opisują proces):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span> <span class="c1">#obecna warstwa</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">obiekt</span> <span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()]</span> <span class="c1">#iteracja przez obiektu</span>
+<span class="n">pierwszy_obiekt</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#pierwszy obiekt</span>
+
+<span class="n">geom</span> <span class="o">=</span> <span class="n">pierwszy_obiekt</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span> <span class="c1">#pobieramy geometrię</span>
+<span class="n">nowa_geometria</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#szykujemy listy na nową geometrię</span>
+<span class="n">nowy_otwor</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">geom</span><span class="o">.</span><span class="n">asMultiPolygon</span><span class="p">():</span> <span class="c1">#iteracja przez obiekty w MultiPolygon (jest 1)</span>
+    <span class="n">nowa_geometria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obiekt</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#obrys sobie przepisujemy</span>
+    <span class="k">for</span> <span class="n">wierzcholek</span> <span class="ow">in</span> <span class="n">obiekt</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="c1">#Iteracja przez wierzcholki otworu</span>
+        <span class="n">wierzcholek</span><span class="o">.</span><span class="n">setX</span><span class="p">(</span><span class="n">wierzcholek</span><span class="o">.</span><span class="n">x</span><span class="p">()</span><span class="o">+</span><span class="mf">.1</span><span class="p">)</span> <span class="c1">#Przesuwamy wspolrzedna X o .1 (w stopniach)</span>
+        <span class="n">nowy_otwor</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wierzcholek</span><span class="p">)</span> <span class="c1">#dodajemy zmienioną geometrię do listy</span>
+
+<span class="n">nowa_geometria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nowy_otwor</span><span class="p">)</span> <span class="c1">#dodajemy zmieniony otwor do listy z nową geometrią</span>
+<span class="n">nowa_geometria</span> <span class="o">=</span> <span class="n">QgsGeometry</span><span class="o">.</span><span class="n">fromPolygonXY</span><span class="p">(</span><span class="n">nowa_geometria</span><span class="p">)</span> <span class="c1">#i tworzymy z niej klasę QgsGeometry</span>
+
+<span class="n">warstwa</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span><span class="o">.</span><span class="n">changeGeometryValues</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="n">nowa_geometria</span><span class="p">})</span> <span class="c1">#zmieniamy geometrię obiektu</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>W rezultacie zmieniliśmy geometrię otworu. Tak naprawdę odsunęliśmy trochę za daleko i znikł :)</p>
+<img src='cw6_img/3.png'/></section>
+<section id="sprawdzanie-typu-geometrii">
+<h2>Sprawdzanie typu geometrii<a class="headerlink" href="#sprawdzanie-typu-geometrii" title="Permalink to this heading">#</a></h2>
+<p>Wykorzystujemy do tego zapytanie wkbType(), które wykonujemy na geometrii. Zwracana jest enumeracja z definicjki klasy QgsWkbTypes. Dla naszego obiektu:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">wkbType</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zwraca: 6</p>
+<p>Zaglądamy do dokumentacji i widzimy, że 6 = MultiPolygon</p>
+<img src='cw6_img/4.png'/><p>Chcielibyśmy to robić jednak programistycznie. Możemy sprawdzić geometrię warunkiem i otrzymać wartośc logiczną poprzez odwołanie się do klasy QgsWkbTypes. Na przykład nasza geometria powinna zwrócić True dla QgsWkbTypes.MultiPolygon:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>geom.wkbType() == QgsWkbTypes.Point
+
+geom.wkbType() == QgsWkbTypes.LineString
+
+geom.wkbType() == QgsWkbTypes.Polygon
+
+geom.wkbType() == QgsWkbTypes.MultiPolygon
+</pre></div>
+</div>
+<p>Zwraca:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>False
+
+False
+
+False
+
+True
+</pre></div>
+</div>
+<p>Samo QgsWkbTypes.MultiPolygon zwraca po prostu cyfrę 6.</p>
+</section>
+<section id="operatory-geometrii">
+<h2>Operatory geometrii<a class="headerlink" href="#operatory-geometrii" title="Permalink to this heading">#</a></h2>
+<p>QGIS udostępnia narzędzia analizy przestrzennej wprost w formie metod. Pozwalają na wykonywanie operacji analizy przestrzennej bezpośrednio w Pythonie QGISa. Metody te to:</p>
+<p>Zwracające informację:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>area - zwraca powierzchnię
+length - zwraca długość obiektu
+centroid - zwraca centroid obiektu
+</pre></div>
+</div>
+<p>Zwracające geometrię:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>buffer - tworzy bufor
+combine - zwraca sumę obiektów
+intersection - zwraca przeciecie obiektow
+</pre></div>
+</div>
+<p>Zwracają wartośc logiczną:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compare - porównuje geometrię
+contains - sprawdza czy jeden obiekt zawiera drugi
+crosses - sprawdza czy jeden obiekt przecina drugi
+equal - sprawdza czy obiekty sa takie same
+disjoint - sprawdza czy obiekty sa rozlaczne
+distance - sprawdza czy obiekty sa w zakresie pewnego dystanu
+intersects - sprawdza czy obiekty sie przecinaja
+overlaps - sprawdza czy obiekty sie nakladaja
+touches - sprawdza czy obiekty sie stykają
+within - sprawdza czy obiekt jest zawarty w innym obiekcie
+</pre></div>
+</div>
+<section id="operatory-informacji-geometrycznej">
+<h3>Operatory informacji geometrycznej<a class="headerlink" href="#operatory-informacji-geometrycznej" title="Permalink to this heading">#</a></h3>
+<p>Zacznijmy od operatorów zwracających informację o pojedynczym obiekcie. Używaliśmy ich już wczesniej:</p>
+<p>print(geom.area())
+print(geom.length())
+print(geom.centroid())</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.2225330000197065e-07 - powierzchnia budynku w mierze stopniowej
+
+0.0018113738023408103 - obwód w mierze stopniowej
+
+&lt;QgsGeometry: Point (15.74956188262261669 50.90287886603740475)&gt; - centroid w aktualnym układzie
+</pre></div>
+</div>
+</section>
+<section id="przyklad-zastosowania-operatorow-geometrycznych-bufor">
+<h3>Przykład zastosowania operatorów geometrycznych - bufor<a class="headerlink" href="#przyklad-zastosowania-operatorow-geometrycznych-bufor" title="Permalink to this heading">#</a></h3>
+<p>Utworzymy teraz bufory pierwszych 50 budynków z wykorzystaniem warswy tymczasowej i metody buffer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span> <span class="c1">#akutalna warstwa</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">obiekt</span> <span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()][:</span><span class="mi">50</span><span class="p">]</span> <span class="c1">#50 obiektów</span>
+<span class="n">nowe</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#lista z nowymi obiektami</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span> <span class="c1">#iteracja po obiektach</span>
+    <span class="n">new_geom</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.0004</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#robimy bufor na 0.0004 stopnia kątowego - 1 onacza liczbe segmentow - możlwie wiele</span>
+    <span class="n">nowe</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_geom</span><span class="p">)</span> <span class="c1">#dodajmy geometrię do listy</span>
+    
+<span class="n">mem_layer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s2">&quot;Polygon&quot;</span><span class="p">,</span><span class="s2">&quot;Buffer&quot;</span><span class="p">,</span><span class="s2">&quot;memory&quot;</span><span class="p">)</span> <span class="c1">#tworzymy warstwę tymczasową</span>
+<span class="n">pr</span> <span class="o">=</span> <span class="n">mem_layer</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span> <span class="c1">#przez dataProvider</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nowe</span><span class="p">)):</span> 
+    <span class="n">bufor</span> <span class="o">=</span> <span class="n">QgsFeature</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1">#tworzmy nowe obiekty o indeksie rosnącym</span>
+    <span class="n">bufor</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">nowe</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="c1">#ustalamy ich geometrię z listy</span>
+    <span class="n">pr</span><span class="o">.</span><span class="n">addFeatures</span><span class="p">([</span><span class="n">bufor</span><span class="p">])</span> <span class="c1">#dodajemy przez dataProvider do warstwy</span>
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">mem_layer</span><span class="p">)</span> <span class="c1">#dodajemy warstwę do okna mapy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wynik:</p>
+<img src='cw6_img/5.png'/></section>
+<section id="przyklad-operatorow-geometrycznych-intersection">
+<h3>Przykład operatorów geometrycznych - intersection<a class="headerlink" href="#przyklad-operatorow-geometrycznych-intersection" title="Permalink to this heading">#</a></h3>
+<p>Metoda intersection - przecięcie wymaga podania dwóch geometrii. Wykorzystajmy  nasze bufory, które niewątpliwie się pokrywają, żeby dokonać przecięcia. W poniższym przykładzie przecinamy tylko obiekty o sąsiadujących indeksach, a zatem obiekt 1 z 2, 2 z 3 itd. Przecięcie wszystkich wymagałoby utworzenia par wszystkich kombinacji indeksów.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span> <span class="c1">#zaznaczamy warstwę bufory w oknie Warstwy</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">obiekt</span> <span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()][:</span><span class="mi">50</span><span class="p">]</span>
+<span class="n">nowe</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span> <span class="c1">#po indeksach listy  - 1, bo x+1 spowodowałoby wyjście poza indeksy</span>
+    <span class="n">new_geom</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">geometry</span><span class="p">())</span> <span class="c1">#przecięcie geometrii x z x+1</span>
+    <span class="n">nowe</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_geom</span><span class="p">)</span>
+    
+
+<span class="n">mem_layer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s2">&quot;Polygon&quot;</span><span class="p">,</span><span class="s2">&quot;Buffer_Intersection&quot;</span><span class="p">,</span><span class="s2">&quot;memory&quot;</span><span class="p">)</span> <span class="c1">#warstwa tymczasowa j.w.</span>
+<span class="n">pr</span> <span class="o">=</span> <span class="n">mem_layer</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nowe</span><span class="p">)):</span>
+    <span class="n">bufor</span> <span class="o">=</span> <span class="n">QgsFeature</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">bufor</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">nowe</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">pr</span><span class="o">.</span><span class="n">addFeatures</span><span class="p">([</span><span class="n">bufor</span><span class="p">])</span>
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">mem_layer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img src='cw6_img/6.png'/></section>
+<section id="przyklad-operatorow-logicznych-geometrii">
+<h3>Przykład operatorów logicznych geometrii<a class="headerlink" href="#przyklad-operatorow-logicznych-geometrii" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#skorzystamy z Numpy, żeby sprwadzić czy budynki się przecinają.</span>
+
+<span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span> <span class="c1">#tym razem Budynki_JG</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">obiekt</span> <span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()][:</span><span class="mi">50</span><span class="p">]</span>
+<span class="n">lista_przeciec</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="p">:</span> <span class="c1">#żeby nie przecinał ze sobą tych samych obiektów</span>
+            <span class="n">if_true</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">geometry</span><span class="p">())</span> 
+            <span class="n">lista_przeciec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">if_true</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lista_przeciec</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Otrzymujemy True, więc coś się przecina. Możemy sprawdzić w którym miejscu listy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lista_przeciec</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(array([ 300,  349,  800,  849,  950,  999, 1150, 1199, 1300, 1349, 1350,
+   1399, 1950, 1999], dtype=int64),)
+</pre></div>
+</div>
+<p>Oczywiście są to indeksy listy, nie indeksy obiektów. Należałoby połączyć indeks listy z obiektami.</p>
+</section>
+</section>
+<section id="konwersja-jednostek-stopniowych-do-innych">
+<h2>Konwersja jednostek stopniowych do innych<a class="headerlink" href="#konwersja-jednostek-stopniowych-do-innych" title="Permalink to this heading">#</a></h2>
+<p>Założmy, że tak jak w tym przypadku nasza warstwa jest w układzie WGS84, który jest kątowy. Jak w takiej sytuacji uzyskać wyniki w metrach?</p>
+<ol class="arabic simple">
+<li><p>Konwertować wszystkie warstwy do układu metrycznego poprzez ich zapis,</p></li>
+<li><p>Konwertować tymczasowo w projekcie,</p></li>
+<li><p>W przypadku długości, odległości skorzystać z klasy QgsDistanceArea</p></li>
+</ol>
+<p>Zacznijmy od nr 3:</p>
+<section id="konwersja-jednostek-w-obliczeniach-geometrii">
+<h3>Konwersja jednostek w obliczeniach geometrii<a class="headerlink" href="#konwersja-jednostek-w-obliczeniach-geometrii" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">obiekt</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span> <span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()][:</span><span class="mi">50</span><span class="p">]</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">QgsDistanceArea</span><span class="p">()</span> <span class="c1">#nowa klasa - klasa pomiaru odległości lub obszaru</span>
+<span class="n">d</span><span class="o">.</span><span class="n">setEllipsoid</span><span class="p">(</span><span class="s1">&#39;WGS84&#39;</span><span class="p">)</span> <span class="c1">#wybieramy elipsoidę na której mierzymy</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">measureArea</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1">#metoda pomiaru powierzchni, domyślnie w metrach</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Możemy obliczać powierzchnię w innych jednostkach:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">obiekt</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span> <span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()][:</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">QgsDistanceArea</span><span class="p">()</span>
+<span class="n">d</span><span class="o">.</span><span class="n">setEllipsoid</span><span class="p">(</span><span class="s1">&#39;WGS84&#39;</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">areaUnits</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="n">pomiar</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">measureArea</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">akry</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">convertAreaMeasurement</span><span class="p">(</span><span class="n">pomiar</span><span class="p">,</span> <span class="n">QgsUnitTypes</span><span class="o">.</span><span class="n">AreaUnit</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span> <span class="c1">#określamy jednostkę, tu w akrach</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">akry</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Jednostki, z których możemy skorzystac znajdziemy w dokumentacji:</p>
+<img src='cw6_img/7.png'/>
+<p>Dla długości metoda to measureLength(), resztę wykonujemy analogicznie.</p>
+</section>
+<section id="transformacje-warstw">
+<h3>Transformacje warstw<a class="headerlink" href="#transformacje-warstw" title="Permalink to this heading">#</a></h3>
+<p><b> Nowa klasa </b> klasa układu odniesienia:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>QgsCoordinateReferenceSystem
+</pre></div>
+</div>
+<p>Definiowanie układu:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uklad</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="mi">4326</span><span class="p">,</span> <span class="n">QgsCoordinateReferenceSysten</span><span class="o">.</span><span class="n">PostgisCrsId</span><span class="p">)</span>
+<span class="c1">#Definiujemy uklad na podstawie id jak w PostGIS</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wgs</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="mi">4326</span><span class="p">,</span><span class="n">QgsCoordinateReferenceSystem</span><span class="o">.</span><span class="n">EpsgCrsId</span><span class="p">)</span>
+<span class="c1">#Lub na podstawie numery EPSG</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Układ naszej obecnej warstwy to (podaje EPSG):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span><span class="o">.</span><span class="n">crs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>&lt;QgsCoordinateReferenceSystem: EPSG:4326&gt;</p>
+<p>Z klasy możemy pozyskać atrybuty:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>uklad.srsid() - EPSG
+
+uklad.postgisSrid() - ID układu z PostGIS
+
+uklad.description() - opis
+
+uklad.mapUnits() - jednostka układu, zgodnie z enumeracją z dokumentacji (https://qgis.org/api/classQgsUnitTypes.html#a0602e8a06afd37c267e9e532bb27f50d  - tutaj 6 = kątowa)
+</pre></div>
+</div>
+<p>Proces transformacji jak poniżej:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="mi">4326</span><span class="p">)</span> <span class="c1">#domyślnie EPSG</span>
+<span class="n">do</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="mi">2177</span><span class="p">)</span> <span class="c1">#uklad2000</span>
+
+<span class="n">transformacja</span> <span class="o">=</span> <span class="n">QgsCoordinateTransform</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">do</span><span class="p">,</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">())</span> 
+<span class="c1">#przygotowujemy transformację w projekcie</span>
+
+<span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">obiekt</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span> <span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()][:</span><span class="mi">50</span><span class="p">]</span> <span class="c1">#pierwsze 50 geometrii</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">transformacja</span><span class="p">)</span> <span class="c1">#dokonujemy transformacji</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1">#wyświetla nam się transformowana geometria</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Transformujmy więc pierwsze 50 budynków na warstwę tymczasową:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="mi">4326</span><span class="p">)</span> <span class="c1">#domyślnie EPSG</span>
+<span class="n">do</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="mi">2177</span><span class="p">)</span> <span class="c1">#uklad2000</span>
+
+<span class="n">transformacja</span> <span class="o">=</span> <span class="n">QgsCoordinateTransform</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">do</span><span class="p">,</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">())</span> 
+<span class="c1">#przygotowujemy transformację w projekcie</span>
+
+<span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+
+<span class="n">nowa_warstwa</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s2">&quot;Polygon&quot;</span><span class="p">,</span><span class="s2">&quot;nowa&quot;</span><span class="p">,</span><span class="s2">&quot;memory&quot;</span><span class="p">)</span>
+<span class="n">nowa_warstwa</span><span class="o">.</span><span class="n">setCrs</span><span class="p">(</span><span class="n">do</span><span class="p">)</span> <span class="c1">#a co będzie bez? Tutaj ustalamy metadaną nowej warstwy, bez niej QGIS nie wie w jakim układzie jest warstwa == błąd</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">obiekt</span> <span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()][:</span><span class="mi">50</span><span class="p">]</span> <span class="c1">#tym razem lista obiektów nie geometrii!</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="n">geometria</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
+    <span class="n">geometria</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">transformacja</span><span class="p">)</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">geometria</span><span class="p">)</span> <span class="c1">#nadpisujemy obiekt, stąd pobraliśmy listę obiektów</span>
+    
+    <span class="n">nowa_warstwa</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span><span class="o">.</span><span class="n">addFeatures</span><span class="p">([</span><span class="n">x</span><span class="p">])</span> <span class="c1">#dodajemy obiekty do nowej warstwy - możemy tak, bo skopiowaliśmy całe obiekty</span>
+    
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">nowa_warstwa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img src='cw6_img/8.png'/><p>Transformowane obiekty podświetlone są innym kolorem. Oczywście dzięki transformacji w locie, znajdują się w tym samym miejscu.</p>
+</section>
+</section>
+<section id="ekstra-gratis-do-cwiczen">
+<h2>Ekstra gratis do ćwiczeń:<a class="headerlink" href="#ekstra-gratis-do-cwiczen" title="Permalink to this heading">#</a></h2>
+<section id="warstwy-tymczasowe">
+<h3>Warstwy tymczasowe<a class="headerlink" href="#warstwy-tymczasowe" title="Permalink to this heading">#</a></h3>
+<p>W QGIS2 warstwy tymaczasowe nie były w ogóle dopuszczalne w aplikacji QGISa. W QGIS3 są, lecz nie zawsze. Należy pamiętać że nie zawsze nadają się do geoprocessingu. Pozwalają oszczędzić pamięć i miejsce na dysku twardym podczas operacji.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qgis.PyQt.QtCore</span> <span class="kn">import</span> <span class="n">QVariant</span>
+
+<span class="c1">#pusta warstwa w pamięci</span>
+<span class="n">temp_vlayer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s2">&quot;Point&quot;</span><span class="p">,</span> <span class="s2">&quot;tymczasowe_punkty&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">)</span> <span class="c1">#zamiast &quot;ogr&quot; dajemy &quot;memory&quot;, a zamiast nazwy jej charakter (punktowy &quot;Point&quot;)</span>
+<span class="n">pr</span> <span class="o">=</span> <span class="n">temp_vlayer</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span> <span class="c1">#dataProvider warstwy tymaczasowej</span>
+
+<span class="c1">#Atrybuty - pola</span>
+<span class="n">pr</span><span class="o">.</span><span class="n">addAttributes</span><span class="p">([</span><span class="n">QgsField</span><span class="p">(</span><span class="s2">&quot;nazwa&quot;</span><span class="p">,</span> <span class="n">QVariant</span><span class="o">.</span><span class="n">String</span><span class="p">),</span> <span class="n">QgsField</span><span class="p">(</span><span class="s2">&quot;wiek&quot;</span><span class="p">,</span><span class="n">QVariant</span><span class="o">.</span><span class="n">Int</span><span class="p">)])</span>
+<span class="n">temp_vlayer</span><span class="o">.</span><span class="n">updateFields</span><span class="p">()</span>
+
+<span class="c1">#obiekt</span>
+<span class="n">feat</span> <span class="o">=</span> <span class="n">QgsFeature</span><span class="p">()</span> <span class="c1">#pusty obiekt</span>
+<span class="c1">#Geometria</span>
+<span class="n">feat</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">QgsGeometry</span><span class="o">.</span><span class="n">fromPointXY</span><span class="p">(</span><span class="n">QgsPointXY</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)))</span>
+<span class="c1">#Atrybuty</span>
+<span class="n">feat</span><span class="o">.</span><span class="n">setAttributes</span><span class="p">([</span><span class="s2">&quot;Bobby&quot;</span><span class="p">,</span><span class="mi">12</span><span class="p">])</span>
+<span class="c1">#Dodaj</span>
+<span class="n">pr</span><span class="o">.</span><span class="n">addFeatures</span><span class="p">([</span><span class="n">feat</span><span class="p">])</span>
+<span class="n">temp_vlayer</span><span class="o">.</span><span class="n">updateExtents</span><span class="p">()</span> <span class="c1">#odśwież warstwę</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I teraz możemy ją dodac do okna mapy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">temp_vlayer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="zapis-warstw">
+<h3>Zapis warstw<a class="headerlink" href="#zapis-warstw" title="Permalink to this heading">#</a></h3>
+<p>Zapisywanie warstw wektorowych obsługuje inna klasa - <span class="math notranslate nohighlight">\(QgsVectorFileWriter\)</span> i jej funkcja <span class="math notranslate nohighlight">\(writeAsVectorFormat()\)</span>, która wspiera wszystkie formaty danych OGR (GeoPackage, Shapefile, GeoJSON, KML i inne)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">warstwa</span><span class="p">,</span> <span class="s2">&quot;nazwa&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span> <span class="c1">#(warstwa, nazwa, kodowanie znaków)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">warstwa</span><span class="p">,</span> <span class="s2">&quot;nazwa&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span> <span class="n">driverName</span><span class="o">=</span><span class="s2">&quot;GeoJSON&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crs</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="s2">&quot;epsg:4326&quot;</span><span class="p">)</span>
+<span class="n">QgsVecotFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">warswa</span><span class="p">,</span> <span class="s2">&quot;nazwa&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span> <span class="n">crs</span> <span class="o">=</span> <span class="n">crs</span><span class="p">,</span> <span class="n">driverName</span><span class="o">=</span><span class="s2">&quot;GeoJSON&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<h1> Koniec wykładu 4 </h1></section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Moduł 3 - Lista Zadań</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4.%20PwGIS%204%20-%20Lista%20Zada%C5%84.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Moduł 4 - Lista Zadań</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#podsumowanie-dotychczasowej-wiedzy">Podsumowanie dotychczasowej wiedzy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sprawdzanie-typu-geometrii">Sprawdzanie typu geometrii</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operatory-geometrii">Operatory geometrii</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operatory-informacji-geometrycznej">Operatory informacji geometrycznej</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#przyklad-zastosowania-operatorow-geometrycznych-bufor">Przykład zastosowania operatorów geometrycznych - bufor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#przyklad-operatorow-geometrycznych-intersection">Przykład operatorów geometrycznych - intersection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#przyklad-operatorow-logicznych-geometrii">Przykład operatorów logicznych geometrii</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konwersja-jednostek-stopniowych-do-innych">Konwersja jednostek stopniowych do innych</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konwersja-jednostek-w-obliczeniach-geometrii">Konwersja jednostek w obliczeniach geometrii</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacje-warstw">Transformacje warstw</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstra-gratis-do-cwiczen">Ekstra gratis do ćwiczeń:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warstwy-tymczasowe">Warstwy tymczasowe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zapis-warstw">Zapis warstw</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kamil Smolak
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
