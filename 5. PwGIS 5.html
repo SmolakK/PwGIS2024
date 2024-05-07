@@ -1,0 +1,714 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Moduł 5 - (Q)GIS - Kalkulator pól &#8212; Programowanie w systemach GIS 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '5. PwGIS 5';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Moduł 5 - Lista Zadań" href="5.%20PwGIS%205%20-%20Lista%20Zada%C5%84.html" />
+    <link rel="prev" title="Moduł 4 - Lista Zadań" href="4.%20PwGIS%204%20-%20Lista%20Zada%C5%84.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="1.%20PwGIS%201.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="1.%20PwGIS%201.html">
+                    Wprowadzenie
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html">Moduł 1 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202.html">Moduł 2 - QGIS Wprowadzenie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html">Moduł 2 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203.html">Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html">Moduł 3 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.%20PwGIS%204.html">Moduł 4 - (Q)GIS - szczegółowo o geometrii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.%20PwGIS%204%20-%20Lista%20Zada%C5%84.html">Moduł 4 - Lista Zadań</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Moduł 5 - (Q)GIS - Kalkulator pól</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.%20PwGIS%205%20-%20Lista%20Zada%C5%84.html">Moduł 5 - Lista Zadań</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F5. PwGIS 5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/5. PwGIS 5.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Moduł 5 - (Q)GIS - Kalkulator pól</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kalkulator-pol">Kalkulator pól</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kalkulator-pol-w-pythonie">Kalkulator pól w Pythonie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inny-przyklad-bez-kalkulatora-pol">Inny przykład - bez kalkulatora pól</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modul-5-q-gis-kalkulator-pol">
+<h1>Moduł 5 - (Q)GIS - Kalkulator pól<a class="headerlink" href="#modul-5-q-gis-kalkulator-pol" title="Permalink to this heading">#</a></h1>
+<section id="kalkulator-pol">
+<h2>Kalkulator pól<a class="headerlink" href="#kalkulator-pol" title="Permalink to this heading">#</a></h2>
+<p><strong>W końcu nadszedł czas na wykonywanie zadań, których bez Pythona nie wykonacie</strong></p>
+<p>Jednym z przydatnych narzędzi GIS jest kalkulator pól. Pozwala on na obliczanie wartości w wierszach na podstawie wartości z pozostałych kolumn lub atrybutów warstwy.</p>
+<p>Najpierw spójrzmy jak normalnie działa kalkulator pól w QGIS:</p>
+<p>Na początku wczytujemy warstwę i otwieramy tabelę atrybutów. Dla przykładu otworzymy warstwę strefy_ABC_lotnisko:</p>
+<img src='wyk5_img/1.png'/><p>Następnie otwieramy “Kalkulator pól”</p>
+<img src='wyk5_img/2.png'/><p>W nowym oknie możemy ustalić kilka parametrów:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Dodanie nowego pola czy akutalizacja już istniejącego
+
+Jeśli dodanie nowego pola -&gt; typ danej i jej długość (liczba znaków) i w przypadku liczby zmiennoprzecinkowej liczba miejsc po przecinku
+</pre></div>
+</div>
+<img src='wyk5_img/3.png'/><p>Poniżej znajdują się trzy okna. Idąc od lewej:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Pole wyrażenia -&gt; tu wpisuje się funkcję, która zostanie wywowałana
+
+Pole funkcji -&gt; stąd można wyszukać funkcje które możemu użyć, w tym nazwy pól, operatory geometryczne itd.
+
+Pole podpowiedzi -&gt; krótki opis funkcji wybranej w polu funkcji.
+</pre></div>
+</div>
+<p>Wpiszmy funkcję, która podzieli pole “area” przez 1000. Wynik zapisywany jest do nowego pola.</p>
+<p>Poniżej widać, że w podpowiedziach “Pola i wartości” widzimy nazwy dostępnych pól</p>
+<img src='wyk5_img/4.png'/><p>Po wybraniu “OK” funkcja wykonuje się i dodaje nowe pole z obliczonymi wartościami do tabeli atrybutów warstwy.</p>
+<p>Tryb edycji włącza się automatycznie, można go wyłączyć i zapisać stan.</p>
+<p>GOTOWE!</p>
+<img src='wyk5_img/5.png'/><p>Można również korzystać z operatorów geometrycznych, np.</p>
+<p>pole -&gt; $area</p>
+<p>długość -&gt; $length</p>
+<p>Więcej operatorów znajdziemy w oknie funkcji</p>
+<img src='wyk5_img/6.png'/><section id="kalkulator-pol-w-pythonie">
+<h3>Kalkulator pól w Pythonie<a class="headerlink" href="#kalkulator-pol-w-pythonie" title="Permalink to this heading">#</a></h3>
+<p>Najpierw podczytamy sobie warstwę, załóżmy że mamy ją już w QGIS, więc odwołujemy się przez iface</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">warstwa</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;iface&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Następnie dostajemy się do dataProvider żeby móc edytować warstwę, czyli w tym przypadku dodać nowe pole:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr</span> <span class="o">=</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dodajemy nowe pole metodą klasy dataProvider - add.Attributes (zupłenie jak addFeatures - dodawanie obiektów do warstwy, ale tym razem dodajemy pole danych!)</p>
+<p>Przyjmuje jako argument listę pól. A pole definiujemy jako klasę QgsField (już  wspomniana na wykładzie), która składa  się z (minimalnie) nazwy oraz typu zmienej. Typ zmiennej definiowany jest jako klasa QVariant. Double to liczba zmiennoprzecinkowa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr</span><span class="o">.</span><span class="n">addAttributes</span><span class="p">([</span><span class="n">QgsField</span><span class="p">(</span><span class="s2">&quot;Nazwa&quot;</span><span class="p">,</span><span class="n">QVariant</span><span class="o">.</span><span class="n">Double</span><span class="p">)])</span>
+<span class="n">warstwa</span><span class="o">.</span><span class="n">updateFields</span><span class="p">()</span> <span class="c1">#pamiętamy o odświeżaniu!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Typy QVariant znajdziemy oczywiście w dokumentacji (dokumentacji Qt, nie QGIS API!):</p>
+<img src='wyk5_img/7.png'/><p>Teraz dla każdego obiektu, możemy ustalić nową wartość utworzonego pola przy pomocy pozostałych pól:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span> <span class="c1">#iterujemy się przez obiekty</span>
+    <span class="n">obiekt</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">obiekt</span><span class="o">.</span><span class="n">fieldNameIndex</span><span class="p">(</span><span class="s1">&#39;Nazwa&#39;</span><span class="p">),</span><span class="n">obiekt</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> 
+    <span class="n">warstwa</span><span class="o">.</span><span class="n">updateFeature</span><span class="p">(</span><span class="n">obiekt</span><span class="p">)</span>  <span class="c1">#Każdy obiekt odświeżamy!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dla obiektu w iteracji ustalamy wartość atrybutu metodą setAttribute. Metoda jako argument nr 1) przyjmuje współrzędne pola, którego wartość ma zmieniać, a jako drugi argument - wartość.</p>
+<p>Wykorzystujemy metodę fieldNameIndex, które te współrzędne określa, należy podać tylko nazwę kolumny.</p>
+<p>Podajemy wartość, która ma zostać wprowadzone w pole z argumentu nr 1. Tym razem jest to wartość kolumny “area” dzielona przez 1000.</p>
+<p>Możemy zrobić to samo, korzystając z powierzchni będącej atrybutem obiektu warstwy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">obiekt</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span> <span class="c1">#iterujemy się przez obiekty</span>
+    <span class="n">obiekt</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">obiekt</span><span class="o">.</span><span class="n">fieldNameIndex</span><span class="p">(</span><span class="s1">&#39;Nazwa&#39;</span><span class="p">),</span><span class="n">obiekt</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">area</span><span class="p">()</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> 
+    <span class="n">warstwa</span><span class="o">.</span><span class="n">updateFeature</span><span class="p">(</span><span class="n">obiekt</span><span class="p">)</span>  <span class="c1">#Każdy obiekt odświeżamy!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Czas na zadanie, którego nie da się wykonać nieprogramistycznie!</strong></p>
+<p>Na początku dodajemy do QGIS plik “siatka.shp”</p>
+<img src='wyk5_img/8.png'/><p>Warstwa to siatka agregacji zliczeń wystąpienia radzkiego gatunku ptaka na obszarze Szkocji. Celem jest obliczenie prawdopodobieństwa występowania tych ptaków w danej lokacji.</p>
+<img src='wyk5_img/9.png'/><p>Warstwa składa się z pól:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>id - identyfikator
+xmin,xmax,ymin,ymax - współrzędne narożników
+NUMPOINTS - liczba wystąpień ptaków
+</pre></div>
+</div>
+<p>Prawodpodobieństwo wystąpienia to stosunek częstości wystąpienia ptaka w danym miejscu w stosunku do całkowitej populacji ptaków (czyli sumy zliczeń).</p>
+<p><b>Uwaga: suma prawdopodobieństw powinna się równać jedności.</p>
+<p>Napiszmy skrypt, który w warstwie “siatka.shp” stworzy kolumnę o nazwie “P” typu Double, która będzie zawierała prawdopodobieństwo wystąpienia obecności obserwowanych gatunków ptaków.</p>
+<img src='wyk5_img/10.png'/><p>Teraz należy obliczyć prawdopodobieństwo. Wynik przedstawiam po posortowaniu wartości po kolumnie “id”.</p>
+<img src='wyk5_img/11.png'/><p>Dodatkowo należy sprawdzić, czy wartości prawdodobieństwa równają się jedności. Wynik wyświetl do konsoli. Niestety ze względu na dokładność pola, wynik może wyjść nieznacznie różny od zera. Jest to akceptowalne.</p>
+<img src='wyk5_img/12.png'/></section>
+<section id="inny-przyklad-bez-kalkulatora-pol">
+<h3>Inny przykład - bez kalkulatora pól<a class="headerlink" href="#inny-przyklad-bez-kalkulatora-pol" title="Permalink to this heading">#</a></h3>
+<p>Tym razem nie będziemy już korzystać z kalkulatora. Wykonany kilka przykładów  innych operacji na danych przestrzennych za pomocą Pythona, by zdobyć pewne wartościowe informacje.</p>
+<p>Warstwa “Slady” zawiera dane zgromadzone przy pomocy rejestratora GPS - pozycje odczytywane co 10 sekund. W danych zarejestrowana jest jedna wycieczka - częściowo samochodem, częściowo pieszo. Warstwa zawiera kolumny:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>INDEX - indeks danych
+
+TIME - czas rejestracji
+
+HEIGHT - wysokość punktu n.p.m.
+</pre></div>
+</div>
+<img src='wyk5_img/13.png'/><p><strong>Przykładowe zadanie</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. Oblicz całkowity czas trwania wycieczki w sekundach
+
+2. Oblicz sumę przewyższeń zarejestrowanych w śladzie
+
+3. Oblicz ile czasu zajęłoby pokonanie całej trasy, gdyby poruszać się ze średnią prędkością 18km/h (wynik podaj w godzinach, minutach i sekundach gg:mm:ss)
+</pre></div>
+</div>
+<p><b> Zadanie 1 </b></p>
+<p>Do zadania 1 wykorzystamy pole “TIME”, które jest polem tekstowym. Możemy je transformować na typ danej czasu lub dokonać operacji bezpośredno na tekście zrzutowanym na liczbę. Druga wersja nie wymaga wykorzystania bibliotek (pierwsze rozwiązanie jest lepsze i szybsze, ale zrobimy nr 2).</p>
+<p>Wybierzemy wartość najwyższą i najniżsżą a następnie obliczymy różnicę czasu.</p>
+<p>Na początku wybierzmy wszystkie dane za pomocą wyrażenia listowego. Wybieram tylko czas bo data jest ta sama:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">feat</span><span class="p">[</span><span class="s1">&#39;TIME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">warstwa</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Następnie sortujemy dane:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1">#polecam funkcję sorted</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wybieramy pierwszy i ostatni zarejestrowany czas i rozbijamy go na godziny, minuty i sekundy (w tym momencie moglibyśmy też skorzystać z biblioteki datetime i wykorzystać typ zmiennej “czas” z innej bilbioteki Pythona).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">last_x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zamieniamy dane z tekstowych na liczbowe. Można to zrobić wprost:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_x</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">first_x</span><span class="p">]</span>
+<span class="n">last_x</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">last_x</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lub bardzo przydatną funkcją wbudowaną Pythona (nie omawiałem jej wcześniej!) map()</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_x</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="n">first_x</span><span class="p">)</span>
+<span class="n">last_x</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">last_x</span><span class="p">)</span> <span class="c1">#zwracają iteratory nie listy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>teraz musimy odjąć godziny, minuty i sekundy od siebie. Ja skorzystam z funkcji wbudowanej Pythona zip(). Sprawdźcie w dokumentacji jak działa:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wyniki</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">last_x</span><span class="p">,</span><span class="n">first_x</span><span class="p">):</span>
+    <span class="n">wyniki</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+    
+<span class="c1">#Wynik: [1, -1, 15]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Jeszcze przeliczamy na sekundy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w_w_sekundach</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mnoznik</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3600</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">w</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">wyniki</span><span class="p">,</span><span class="n">mnoznik</span><span class="p">):</span>
+    <span class="n">w_w_sekundach</span> <span class="o">+=</span> <span class="n">w</span><span class="o">*</span><span class="n">t</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">w_w_sekundach</span><span class="p">)</span>
+
+<span class="c1">#Wynik: 3555</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4.%20PwGIS%204%20-%20Lista%20Zada%C5%84.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Moduł 4 - Lista Zadań</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="5.%20PwGIS%205%20-%20Lista%20Zada%C5%84.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Moduł 5 - Lista Zadań</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kalkulator-pol">Kalkulator pól</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kalkulator-pol-w-pythonie">Kalkulator pól w Pythonie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inny-przyklad-bez-kalkulatora-pol">Inny przykład - bez kalkulatora pól</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kamil Smolak
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -176,6 +176,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html">Moduł 3 - Lista Zadań</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Moduł 4 - (Q)GIS - szczegółowo o geometrii</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4.%20PwGIS%204%20-%20Lista%20Zada%C5%84.html">Moduł 4 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.%20PwGIS%205.html">Moduł 5 - (Q)GIS - Kalkulator pól</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.%20PwGIS%205%20-%20Lista%20Zada%C5%84.html">Moduł 5 - Lista Zadań</a></li>
 </ul>
 
     </div>
@@ -409,7 +411,7 @@ document.write(`
 
 QgsVectorLayer - klasa warstwy wektorowej
 
-QgsRaterLayer - klasa warstwy rastrowej
+QgsRasterLayer - klasa warstwy rastrowej
 
 QgsFeature - klasa obiektu warstwy wektorowej
 
@@ -574,7 +576,19 @@ Zobaczmy na innym przykładzie (komentarze opisują proces):</p>
 </div>
 </div>
 <p>W rezultacie zmieniliśmy geometrię otworu. Tak naprawdę odsunęliśmy trochę za daleko i znikł :)</p>
-<img src='cw6_img/3.png'/></section>
+<img src='cw6_img/3.png'/><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">40000</span><span class="o">/</span><span class="mi">360</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111.11111111111111
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="sprawdzanie-typu-geometrii">
 <h2>Sprawdzanie typu geometrii<a class="headerlink" href="#sprawdzanie-typu-geometrii" title="Permalink to this heading">#</a></h2>
 <p>Wykorzystujemy do tego zapytanie wkbType(), które wykonujemy na geometrii. Zwracana jest enumeracja z definicjki klasy QgsWkbTypes. Dla naszego obiektu:</p>
@@ -772,9 +786,7 @@ print(geom.centroid())</p>
 <span class="n">d</span><span class="o">.</span><span class="n">areaUnits</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
-    <span class="n">pomiar</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">measureArea</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">akry</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">convertAreaMeasurement</span><span class="p">(</span><span class="n">pomiar</span><span class="p">,</span> <span class="n">QgsUnitTypes</span><span class="o">.</span><span class="n">AreaUnit</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span> <span class="c1">#określamy jednostkę, tu w akrach</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">akry</span><span class="p">)</span>
+ 
 </pre></div>
 </div>
 </div>
