@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Moduł 6 - Własna wtyczka do QGIS &#8212; Programowanie w systemach GIS 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '6. PwGIS 6';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Moduł 5 - Lista Zadań" href="5.%20PwGIS%205%20-%20Lista%20Zada%C5%84.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="1.%20PwGIS%201.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="1.%20PwGIS%201.html">
+                    Wprowadzenie
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20PwGIS%201%20-%20Lista%20Zada%C5%84.html">Moduł 1 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202.html">Moduł 2 - QGIS Wprowadzenie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html">Moduł 2 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203.html">Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html">Moduł 3 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.%20PwGIS%204.html">Moduł 4 - (Q)GIS - szczegółowo o geometrii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.%20PwGIS%204%20-%20Lista%20Zada%C5%84.html">Moduł 4 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.%20PwGIS%205.html">Moduł 5 - (Q)GIS - Kalkulator pól</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.%20PwGIS%205%20-%20Lista%20Zada%C5%84.html">Moduł 5 - Lista Zadań</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Moduł 6 - Własna wtyczka do QGIS</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F6. PwGIS 6.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/6. PwGIS 6.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Moduł 6 - Własna wtyczka do QGIS</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tworzymy-wlasny-plugin">Tworzymy własny plugin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piszemy-plugin">Piszemy plugin!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfejs-gotowy">Interfejs gotowy!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#od-teraz-mozna-juz-kodowac-wtyczke">Od teraz można już kodować wtyczkę!</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modul-6-wlasna-wtyczka-do-qgis">
+<h1>Moduł 6 - Własna wtyczka do QGIS<a class="headerlink" href="#modul-6-wlasna-wtyczka-do-qgis" title="Permalink to this heading">#</a></h1>
+<p>Tematem dzisiejszego wykładu będzie pisanie własnych wtyczek do QGISa. To ostateczne zadanie tego semestru - kreacja własnej wtyczki. Oczywiście, cała wiedza dotycząca programowania w QGIS jest użyteczna w kontekście tworzenia wtyczki - funkcjonalności programuje się tak samo.</p>
+<p>W przypadku wtyczek dochodzi również kwestia związana z tworzeniem modułów Pythona oraz kreacją interfejsu graficznego. Zagadnienie to jest na tyle duże, że podzielimy je pomiędzy następne wykłady.</p>
+<p>Startujemy!</p>
+<p>Od samego początku. Czym jest wtyczka?</p>
+<p>Wtyczka ma za zadanie rozszerzać funkcjonalność QGISa, udostępniać narzędzia w wygodny sposób z intefrejsem graficznym pozwalając na operowanie narzędziami. Wszystko w QGISie może zostać zmodyfikowane i nie ma ku temu żadnych przeszkód (możemy też modyfikować zachowanie samego QGISa). Wtyczki pisane są również przez społeczność QGISa i udostępniane w oficjalnym repozytorium  wtyczek dostępnym w oprogramowaniu:</p>
+<img src='wyk6_img/1.png' /><p>Nie każda, ale większość wtyczek ma interfejs graficzny w postaci otwieranego okienka (niektóre po prostu uruchamiają się z paska). Przykładowo, może to wyglądać tak:</p>
+<img src='wyk6_img/2.png' /><p>Cały interfejs oraz zachowania przycisków zostały wcześniej oprogramowane i są uruchamione “pod spodem” podczas pracy QGISa.</p>
+<section id="tworzymy-wlasny-plugin">
+<h2>Tworzymy własny plugin<a class="headerlink" href="#tworzymy-wlasny-plugin" title="Permalink to this heading">#</a></h2>
+<p>Na początek <b> gdzie przechowywać </b>?</p>
+<p>Pluginy przechowywane są w folderze wewnętrznym QGISa pod ścieżką (w Windows):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\NAZWA_UZYTKOWNIKA\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins
+</pre></div>
+</div>
+<p>Gdzie za “NAZWA_UZYTKOWNIKA” wstawiamy własną nazwę uzytkownika.</p>
+<p>Tam każdy folder to jeden plugin. Dla swojego plugina też tworzymy taki folder:</p>
+<img src='wyk6_img/3.png' /><p>Przygotowanie pluginu do QGISa wymaga stworzenia:</p>
+<ul>
+    <li>modułów - jak w bibliotece progamistycznej</li>
+    <li>interfejsu graficznego użytkownika</li>
+</ul>
+Struktura jest z góry ustalona. To wszystko znajdzie się w tym folderze
+<p>Każdy plugin musi zawierać ustalone pliki w folderze żeby został wczytany. Są to elementy, jakie musi zawierać moduł Python, aby został przez interpreter odnaleziony, a wiec plik <span class="math notranslate nohighlight">\(__init__.py\)</span> oraz plik interfejsu oraz kodu wykonywalnego:</p>
+<ul>
+    <li>$__init__.py$ - inicjalizacyjny (nawet jeśli pusty)</li>
+    <li>form.py - z interfejsem graficznym</li>
+    <li>plik z kodem wykonywalnym</li>
+</ul>
+<p>Powinien być też dołączony plik z metadanymi <span class="math notranslate nohighlight">\(metadata.txt\)</span></p>
+<ol class="arabic simple">
+<li><p>Plik <span class="math notranslate nohighlight">\(__init__.py\)</span> możemy stworzyć ręcznie</p></li>
+<li><p>Plik <a class="reference external" href="http://form.py">form.py</a> wygenerujemy z narzędzia do projektowania interfejsów graficznych</p></li>
+<li><p>Plik z kodem wykonywalnym <b> musimy napisać sami </b> do tego polecam korzystać z czegoś lepszego niż notatnika - może być Notepad++ (ma kolorowanie składni), ale najlepiej korzystać z IDE (nie Jupyter) np Spyder lub (osobiście polecam JetBrains PyCharm). Dalej będę korzystał z PyCharma, więc od razu pokażę jak go używać. Uwaga: Dla uproszczenia, kod wykonywalny umieścimy w pliku <span class="math notranslate nohighlight">\(__init__.py\)</span></p></li>
+</ol>
+<p>Spyder zainstalowany został już z Anacondą a <b> PyCharm </b> dostępny jest za darmo na stronie: <a class="reference external" href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a></p>
+<p>Po otwarciu IDE (czy to Spyder czy PyCharm), należy rozpocząć tworzenie nowego projektu w folderze, który stworzliśmy dla naszej wtyczki. Odbywa się to po prostu za pomocą ikony folderu:</p>
+<img src='wyk6_img/4.png' /><p>Lub File -&gt; Open w PyCharm:</p>
+<img src='wyk6_img/5.png' /><p>Następnie tworzymy pusty plik <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> w naszej wtyczce. Dzięki temu narzędzie ładujące wtyczki, wie, że jest to wtyczka Pythona.</p>
+<p>Już prawie jesteśmy przygotowani do tworzenia pluginu. Jeszcze tylko jedna rzecz….</p>
+<p>Każda zmiana we wtyczce wymaga wyłączenia i włączenia QGISa na nowo. Żeby tego uniknąć, warto zainstalować sobie wtyczkę z repozytorium <b> Plugin Reloader </b>. Wystarczy wtedy kliknąć ikonę wtyczki by odświeżyć nasz kod</p>
+<img src='wyk6_img/6.png' /></section>
+<section id="piszemy-plugin">
+<h2>Piszemy plugin!<a class="headerlink" href="#piszemy-plugin" title="Permalink to this heading">#</a></h2>
+<p>Zaczniemy od stworzenia potrzebnej struktury plików. Po pierwsze <b> skłamałem, bo </b> <code class="docutils literal notranslate"><span class="pre">__init.py__</span></code> nie może być pusty. Musi zawierać on definicję funkcji classFactory, która powoduje że plugin zostaje załadowany do QGIS. Jako atrybut przyjmuje QgisInterface (automatycznie taki parametr wysyła QGIS przy uruchomieniu), więc musimy funkcję na to przygotować. Funkcja zwrocić ma klasę - klasę, która jest naszą wtyczką. Kod ma wyglądać jak poniżej:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">classFactory</span><span class="p">(</span><span class="n">iface</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">nazwaKlasyPluginu</span><span class="p">(</span><span class="n">iface</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zatem niech będzie:</p>
+<img src='wyk6_img/7.png' /><p>Dygresja: <b> UWAGA: </b> wcięcia mają być 4 spacjami nie tabem, gdy mamy 4 spacje, QGIS po prostu nie czyta kodu. Ustawić to możemy w PyCharmie:</p>
+<p>Moglibyśmy dokonać importu z kodu z innego pliku (wtedy funkcja classFactory wyglądała by inaczej!) i stworzyc osobny plik  z kodem wtyczki. Dla uproszczenia, wszystko będziemy pisać w jednym pliku <code class="docutils literal notranslate"><span class="pre">__init.py__</span></code></p>
+<p>Gdybyśmy chcieli zrobić to w osobnym pliku to funkcja classFactory musiałaby wyglądać tak:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def classFactory(iface):
+
+    from .plik_osobny import nazwaWtyczki
+    return nazwaWtyczki(iface)
+</pre></div>
+</div>
+<p>Kontynuujemy w tym samym pliku. Nasza wtyczka jest klasą, która jak już ustaliliśmy nazywya się “NaszPlugin”. Stwórzmy klasę i napiszmy też funkcję inicjalizującą</p>
+<img src='wyk6_img/8.png' /><p>Stworzyliśmy klasę o nazwie NaszPlugin, która ma funkcję inicjalizacji, która obowiązkowo (!) również ma przyjmować obiekt klasy QgisInterface. To warunek załadowania wtyczki. W classFactory zwracamy NaszPlugin(iface), czyli to jest instancjonowanie tej właśnie klasy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NaszPlugin</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;To klasa naszego pluginu&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicjalizacja</span>
+<span class="sd">        :param iface: QgisInterface</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span> <span class="o">=</span> <span class="n">iface</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Do naszego pliku będziemy jeszcze wracać. Teraz zajmijmy się dwoma pozostałymi elementami czyli:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>metadane
+interfejs
+</pre></div>
+</div>
+<p><b> Metadane </b> są obowiązkowe i bez nich wtyczka nie zostanie wczytana. Plik metadata.txt (taka nazwa jest obowiązkowa), musi znaleźć się w folderze z wtyczką. Zawierać ma informacje o wtyczce w ustalonych znacznikach. Wyglądać ma tak:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[general]
+name=NaszPlugin
+description=opis
+about=opis dlugi
+version=1.0
+qgisMinimumVersion=3.0
+author=Ja
+email=some@em.ail
+repository=URL
+</pre></div>
+</div>
+<p>Na samym dole możemy nieobowiązkowo dodać:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    icon=icon.png
+</pre></div>
+</div>
+<p>To nazwa pliku z ikoną, która zamieszczona jest w folderze wtyczki (Plik icon.png załączony do wykładu).</p>
+<p>Wtyczka już powinna się wczytywać. Należy <b> na nowo </b> uruchomić teraz QGISa. Podczas uruchamiania pojawi się błąd - dlatego, że brakuje nam jeszcze kilku obowiązkowych funkcji. Niemniej jednak w repozytorium wtyczek plugin powinien być dostępny.</p>
+<img src='wyk6_img/9.png' /><p>Zaznaczmy ją i zamknijmy repozytorium. Wtyczka będzie już dostępna dla QGISa.</p>
+<p>Nadal brak nam jednak ważnych rzeczy - interfejsu i dwóch obowiązkowych funkcji w pliku <span class="math notranslate nohighlight">\(__init__\)</span>. Zacznijmy od interfejsu.</p>
+<p>Interfejs będziemy tworzyć w oprogramowaniu QtDesigner (zaznaczałem wcześniej że powinien się z QGISem zainstalować).</p>
+<img src='wyk6_img/10.png' /><p>Qtdesigner to dość intuicyjne narzędzie projektowania interfejsów. Po uruchomieniu pojawi nam się takie okno:</p>
+<img src='wyk6_img/11.png' /><p>Możemy wybrać “template” z dwoma przyciskami na dole. Od razu dodane zostaną 3 elementy - okno główne oraz dwa przyciski.</p>
+<img src='wyk6_img/12.png' /><p>Teraz omówmy podstawowe funkcjonalności QDesignera</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-Tworzenie, otwieranie i zapisywanie interfejsu do formatu *.ui
+-Panel widżetów - przeciąganie elementów
+-Herarchia obiektów
+-Parametry widżetów
+-Nazewnictwo widżetów
+</pre></div>
+</div>
+<p>Utworzony interfejs zapisujemy do pliku *.ui Najlepiej w folderze pluginu. Ja nazwałem go form.ui</p>
+<img src='wyk6_img/13.png' /><p>Sam plik nie wystarczy, bo nie może być zrozumiany przez Pythona. Plik ui to tak naprawdę XML:</p>
+<img src='wyk6_img/14.png' /><p>Należy go konwertować do pliku *.py</p>
+<p>Niezbędne będzie środowisko PyQt5 (konwerter z Qt do Pythona), żeby je zainstalować uruchamiamy Anaconda Prompt i wpisujemy:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install pyqt5
+</pre></div>
+</div>
+<p>Na pasku powinna pojawić sie informacja gdzie zainstalowano PyQt:</p>
+<img src='wyk6_img/15.png' /><p>Tam będzie znajdować się plik pyuic5.exe, który nas interesuje. Zapamiętujemy ścieżkę do tego pliku.</p>
+<p>Teraz w folderze z wtyczką musimy otworzyć okno poleceń Windows PowerShell:</p>
+<p>shift + prawy przycisk myszy gdzies na folderze, przy odznaczonych wszystkich plikach:</p>
+<img src='wyk6_img/16.png' /><p>Teraz musimy wywołać konwerter, czyli plik pyuic5.exe. Należy wpisać całą ścieżkę do pliku oraz podać dwa parametry plik wejściowy *.ui i wyjściowy *.py</p>
+<img src='wyk6_img/17.png' /><p>U mnie to jest:</p>
+<p>C:\users\kamil\appdata\local\programs\python\python37\Scripts\pyuic5.exe form.ui -o <a class="reference external" href="http://form.py">form.py</a></p>
+<p>Powstanie w folderze plik <a class="reference external" href="http://form.py">form.py</a>, który będzie zawierać interfejs, który zaprojektowaliśmy w QtDesigner:</p>
+<img src='wyk6_img/18.png' /><p><b> Za każdym razem gdy zmienimy coś w interfejsie, trzeba będzie ponownie wykonać konwersję!</p>
+<p>Wpisywanie całej ścieżki na raz byłoby żmudne, więc dla ułatwienia możemy stworzyć sobie <b> batch file </b>, który będzie miał zapisną tę scieżkę.</p>
+<p>W folderze z pluginem tworzymy nowy plik “konwert.bat” i otwieramy go notatnikiem. W środku wpisujemy:</p>
+<p>&#64;sciezka_do_pliku_exe %1 %2 %3 %4 %5 %6 %7 %8 %9</p>
+<p>U mnie to jest:</p>
+<p>&#64;C:\users\kamil\appdata\local\programs\python\python37\Scripts\pyuic5.exe %1 %2 %3 %4 %5 %6 %7 %8 %9</p>
+<p>Teraz zamiast wywoływać w PowerShell całą scieżkę piszę:</p>
+<p>./konwert form.ui -o <a class="reference external" href="http://form.py">form.py</a></p>
+<p>(kropka i ukośnik są ważne!)</p>
+</section>
+<section id="interfejs-gotowy">
+<h2>Interfejs gotowy!<a class="headerlink" href="#interfejs-gotowy" title="Permalink to this heading">#</a></h2>
+<p>Wtyczka jeszcze nie zadziała. Brakuje nam dwóch ważnych funkcji w pliku głównym - initGui() oraz unload()</p>
+<p>initGui() odpowiada za to co dzieje się po uruchomieniu pluginu.</p>
+<p>unload() za to co dzieje się po jego zamknięciu.</p>
+<p>Gdy dodamy te funkcje, nawet jako puste, przy ponownym uruchomieniu QGISa nie pojawi się nam już błąd</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">initGui</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">unload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nie możemy jej jednak uruchomić, bo QGIS nie wie, gdzie ma się znaleźć ikonka do jej uruchamiania. Oprogramowujemy to w funkcji initGui().
+Zacznijmy od importu funkcjonalności PyQT na samej górze pliku:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qgis.PyQt.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">qgis.PyQt.QtWidgets</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [4],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qgis.PyQt.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">qgis.PyQt.QtWidgets</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;qgis&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>W initGui oprogramowujemy to gdzie i jak w QGIS ma zostać osadzona wtyczka.</p>
+<p>Zaczynamy od stworzenia “akcji” czyli przycisku uruchomienia. To obiekt klasy QAction z biblioteki Qt. Wygląda on następująco:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>QAction(ikona,nazwa,lokalizacja)
+</pre></div>
+</div>
+<p>Ikonę należy ująć w inny obiekt Qt - QIcon, którego syntax to:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>QIcon(sciezka_do_pliku)
+</pre></div>
+</div>
+<p>Całość zatem to (z moją ścieżką do ikony):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>QAction(QIcon(&quot;&quot;&quot;C:\\Users\\kamil\\AppData\\Roaming\\QGIS\\QGIS3\\profiles\\default\\python\\plugins\\plugin\\icon.png&quot;&quot;&quot;),&quot;NaszPlugin&quot;,self.iface.mainWindow())
+</pre></div>
+</div>
+<p>Tworzymy dla niej atrybut klasy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">QAction</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">kamil</span><span class="se">\\</span><span class="s2">AppData</span><span class="se">\\</span><span class="s2">Roaming</span><span class="se">\\</span><span class="s2">QGIS</span><span class="se">\\</span><span class="s2">QGIS3</span><span class="se">\\</span><span class="s2">profiles</span><span class="se">\\</span><span class="s2">default</span><span class="se">\\</span><span class="s2">python</span><span class="se">\\</span><span class="s2">plugins</span><span class="se">\\</span><span class="s2">plugin</span><span class="se">\\</span><span class="s2">icon.png&quot;&quot;&quot;</span><span class="p">),</span><span class="s2">&quot;NaszPlugin&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Następne polecenie informuje gdzie go umieścić, jest metodą interfejsu (który już przypisaliśmy wtyczce w funkcji inicjalizującej <strong>init</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">addToolBarIcon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">)</span> <span class="c1">#ta funkcja dodaje na głównym pasku</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I ostatnie - co ma się stać jak klikniemy? Oczywiście uruchomić okno. Można to oprogramować w initGui, ale stwórzmy osobną funkcję na funkcjonalności własne wtyczki.</p>
+<p>Odwoływanie się do innych funkcji jest dość nietypowe. Aby uruchomić inną funkcję należy wpisać:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nazwa_obiektu_uruchamiającego.na_co_reagowac(nazwa_sygnalu).connect(nazwa_fukcji_uruchamianej)
+</pre></div>
+</div>
+<p>W tym przypadku:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>self.action.triggered.connect(self.run)
+</pre></div>
+</div>
+<p>Czyli self.action po byciu klikniętym (triggered) uruchamia funkcję run. Tę funkcję oczywiście należy dopisać na dole pliku.</p>
+<p>Razem initGui wygląda tak:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">initGui</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">QAction</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">kamil</span><span class="se">\\</span><span class="s2">AppData</span><span class="se">\\</span><span class="s2">Roaming</span><span class="se">\\</span><span class="s2">QGIS</span><span class="se">\\</span><span class="s2">QGIS3</span><span class="se">\\</span><span class="s2">profiles</span><span class="se">\\</span><span class="s2">default</span><span class="se">\\</span><span class="s2">python</span><span class="se">\\</span><span class="s2">plugins</span><span class="se">\\</span><span class="s2">plugin</span><span class="se">\\</span><span class="s2">icon.png&quot;&quot;&quot;</span><span class="p">),</span><span class="s2">&quot;NaszPlugin&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">addToolBarIcon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zanim zaczniemy testować wtyczkę, należy oprogramować zamykanie wtyczki. W przeciwnym wypadku każde odświeżenie wtyczki spowoduje stworzenie nowej wtyczki (a więc dodanie nowej ikony na pasku) i tak w nieskończoność. Tworzmy funkcję unload() i przeciwnie do tego co zrobiliśmy w initGui teraz każemy usunąć ją z paska i usunąć akcję z pamięci QGISa:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">unload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">removeToolBarIcon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">action</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>na dole dodajemy pustą funkcję run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Teraz możemy uruchomić QGISa. Wtyczka powinna być dostępna na pasku:</p>
+<img src='wyk6_img/20.png' /><p>Po jej wciśnięciu nic się nie dzieje. To dlatego że nie oprogramowaliśmy uruchamiania interfejsu. Na początku musimy z naszego pliku <a class="reference external" href="http://form.py">form.py</a> zaimportować stworozny interfejs (to jest klasa). Ja nazwałem główne okno “Okno” więc w pliku <a class="reference external" href="http://form.py">form.py</a> mam klasę Ui_Okno.</p>
+<p>Importuję poprzez:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.form</span> <span class="kn">import</span> <span class="n">Ui_Okno</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>W run() oprogramowujemu uruchamianie okna po kliknięciu na wtyczkę:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QDialog</span><span class="p">()</span> <span class="c1">#przygotowuje pustą klasę QDialog</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">form</span> <span class="o">=</span> <span class="n">Ui_Okno</span><span class="p">()</span> <span class="c1">#do self.form instancjonuje klasę Ui_Okno()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span> <span class="c1">#uruchamiamy metodę setupUi (z form.py) i jako argument podajemy nasz przygotowany obiekt QDialog</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="c1">#pokazujemy okno</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Odświeżamy wtyczkę i działa!</p>
+<img src='wyk6_img/21.png' /><p>Cały plik:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qgis.PyQt.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">qgis.PyQt.QtWidgets</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.form</span> <span class="kn">import</span> <span class="n">Ui_Okno</span>
+
+<span class="k">def</span> <span class="nf">classFactory</span><span class="p">(</span><span class="n">iface</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">NaszPlugin</span><span class="p">(</span><span class="n">iface</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">NaszPlugin</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;To klasa naszego pluginu&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicjalizacja</span>
+<span class="sd">        :param iface: QgisInterface</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span> <span class="o">=</span> <span class="n">iface</span>
+
+    <span class="k">def</span> <span class="nf">initGui</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Inicjalizacja ikony i uruchomienia&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">QAction</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">kamil</span><span class="se">\\</span><span class="s2">AppData</span><span class="se">\\</span><span class="s2">Roaming</span><span class="se">\\</span><span class="s2">QGIS</span><span class="se">\\</span><span class="s2">QGIS3</span><span class="se">\\</span><span class="s2">profiles</span><span class="se">\\</span><span class="s2">default</span><span class="se">\\</span><span class="s2">python</span><span class="se">\\</span><span class="s2">plugins</span><span class="se">\\</span><span class="s2">plugin</span><span class="se">\\</span><span class="s2">icon.png&quot;&quot;&quot;</span><span class="p">),</span><span class="s2">&quot;NaszPlugin&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">addToolBarIcon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">unload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Usuwanie wtyczki po zamknięciu&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">removeToolBarIcon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">action</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Uruchamianie wtyczki, główny moduł&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QDialog</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">form</span> <span class="o">=</span> <span class="n">Ui_Okno</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="od-teraz-mozna-juz-kodowac-wtyczke">
+<h2>Od teraz można już kodować wtyczkę!<a class="headerlink" href="#od-teraz-mozna-juz-kodowac-wtyczke" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="5.%20PwGIS%205%20-%20Lista%20Zada%C5%84.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Moduł 5 - Lista Zadań</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tworzymy-wlasny-plugin">Tworzymy własny plugin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piszemy-plugin">Piszemy plugin!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfejs-gotowy">Interfejs gotowy!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#od-teraz-mozna-juz-kodowac-wtyczke">Od teraz można już kodować wtyczkę!</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kamil Smolak
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
