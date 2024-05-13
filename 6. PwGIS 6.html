@@ -62,8 +62,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '6. PwGIS 6';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -393,7 +391,7 @@ document.write(`
 <p>Startujemy!</p>
 <p>Od samego początku. Czym jest wtyczka?</p>
 <p>Wtyczka ma za zadanie rozszerzać funkcjonalność QGISa, udostępniać narzędzia w wygodny sposób z intefrejsem graficznym pozwalając na operowanie narzędziami. Wszystko w QGISie może zostać zmodyfikowane i nie ma ku temu żadnych przeszkód (możemy też modyfikować zachowanie samego QGISa). Wtyczki pisane są również przez społeczność QGISa i udostępniane w oficjalnym repozytorium  wtyczek dostępnym w oprogramowaniu:</p>
-<img src='wyk6_img/1.png' /><p>Nie każda, ale większość wtyczek ma interfejs graficzny w postaci otwieranego okienka (niektóre po prostu uruchamiają się z paska). Przykładowo, może to wyglądać tak:</p>
+<img src='wyk6_img/1.PNG' /><p>Nie każda, ale większość wtyczek ma interfejs graficzny w postaci otwieranego okienka (niektóre po prostu uruchamiają się z paska). Przykładowo, może to wyglądać tak:</p>
 <img src='wyk6_img/2.png' /><p>Cały interfejs oraz zachowania przycisków zostały wcześniej oprogramowane i są uruchamione “pod spodem” podczas pracy QGISa.</p>
 <section id="tworzymy-wlasny-plugin">
 <h2>Tworzymy własny plugin<a class="headerlink" href="#tworzymy-wlasny-plugin" title="Permalink to this heading">#</a></h2>
@@ -410,17 +408,17 @@ document.write(`
     <li>interfejsu graficznego użytkownika</li>
 </ul>
 Struktura jest z góry ustalona. To wszystko znajdzie się w tym folderze
-<p>Każdy plugin musi zawierać ustalone pliki w folderze żeby został wczytany. Są to elementy, jakie musi zawierać moduł Python, aby został przez interpreter odnaleziony, a wiec plik <span class="math notranslate nohighlight">\(__init__.py\)</span> oraz plik interfejsu oraz kodu wykonywalnego:</p>
+<p>Każdy plugin musi zawierać ustalone pliki w folderze żeby został wczytany. Są to elementy, jakie musi zawierać moduł Python, aby został przez interpreter odnaleziony, a wiec plik <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> oraz plik interfejsu oraz kodu wykonywalnego:</p>
 <ul>
-    <li>$__init__.py$ - inicjalizacyjny (nawet jeśli pusty)</li>
+    <li>`__init__.py` - inicjalizacyjny (nawet jeśli pusty)</li>
     <li>form.py - z interfejsem graficznym</li>
     <li>plik z kodem wykonywalnym</li>
 </ul>
-<p>Powinien być też dołączony plik z metadanymi <span class="math notranslate nohighlight">\(metadata.txt\)</span></p>
+<p>Powinien być też dołączony plik z metadanymi <code class="docutils literal notranslate"><span class="pre">metadata.txt</span></code></p>
 <ol class="arabic simple">
-<li><p>Plik <span class="math notranslate nohighlight">\(__init__.py\)</span> możemy stworzyć ręcznie</p></li>
+<li><p>Plik <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> możemy stworzyć ręcznie</p></li>
 <li><p>Plik <a class="reference external" href="http://form.py">form.py</a> wygenerujemy z narzędzia do projektowania interfejsów graficznych</p></li>
-<li><p>Plik z kodem wykonywalnym <b> musimy napisać sami </b> do tego polecam korzystać z czegoś lepszego niż notatnika - może być Notepad++ (ma kolorowanie składni), ale najlepiej korzystać z IDE (nie Jupyter) np Spyder lub (osobiście polecam JetBrains PyCharm). Dalej będę korzystał z PyCharma, więc od razu pokażę jak go używać. Uwaga: Dla uproszczenia, kod wykonywalny umieścimy w pliku <span class="math notranslate nohighlight">\(__init__.py\)</span></p></li>
+<li><p>Plik z kodem wykonywalnym <b> musimy napisać sami </b> do tego polecam korzystać z czegoś lepszego niż notatnika - może być Notepad++ (ma kolorowanie składni), ale najlepiej korzystać z IDE (nie Jupyter) np Spyder lub (osobiście polecam JetBrains PyCharm). Dalej będę korzystał z PyCharma, więc od razu pokażę jak go używać. Uwaga: Dla uproszczenia, kod wykonywalny umieścimy w pliku <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></p></li>
 </ol>
 <p>Spyder zainstalowany został już z Anacondą a <b> PyCharm </b> dostępny jest za darmo na stronie: <a class="reference external" href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a></p>
 <p>Po otwarciu IDE (czy to Spyder czy PyCharm), należy rozpocząć tworzenie nowego projektu w folderze, który stworzliśmy dla naszej wtyczki. Odbywa się to po prostu za pomocą ikony folderu:</p>
@@ -491,7 +489,7 @@ repository=URL
 <p>To nazwa pliku z ikoną, która zamieszczona jest w folderze wtyczki (Plik icon.png załączony do wykładu).</p>
 <p>Wtyczka już powinna się wczytywać. Należy <b> na nowo </b> uruchomić teraz QGISa. Podczas uruchamiania pojawi się błąd - dlatego, że brakuje nam jeszcze kilku obowiązkowych funkcji. Niemniej jednak w repozytorium wtyczek plugin powinien być dostępny.</p>
 <img src='wyk6_img/9.png' /><p>Zaznaczmy ją i zamknijmy repozytorium. Wtyczka będzie już dostępna dla QGISa.</p>
-<p>Nadal brak nam jednak ważnych rzeczy - interfejsu i dwóch obowiązkowych funkcji w pliku <span class="math notranslate nohighlight">\(__init__\)</span>. Zacznijmy od interfejsu.</p>
+<p>Nadal brak nam jednak ważnych rzeczy - interfejsu i dwóch obowiązkowych funkcji w pliku <code class="docutils literal notranslate"><span class="pre">__init__</span></code>. Zacznijmy od interfejsu.</p>
 <p>Interfejs będziemy tworzyć w oprogramowaniu QtDesigner (zaznaczałem wcześniej że powinien się z QGISem zainstalować).</p>
 <img src='wyk6_img/10.png' /><p>Qtdesigner to dość intuicyjne narzędzie projektowania interfejsów. Po uruchomieniu pojawi nam się takie okno:</p>
 <img src='wyk6_img/11.png' /><p>Możemy wybrać “template” z dwoma przyciskami na dole. Od razu dodane zostaną 3 elementy - okno główne oraz dwa przyciski.</p>
@@ -518,7 +516,7 @@ repository=URL
 <img src='wyk6_img/17.png' /><p>U mnie to jest:</p>
 <p>C:\users\kamil\appdata\local\programs\python\python37\Scripts\pyuic5.exe form.ui -o <a class="reference external" href="http://form.py">form.py</a></p>
 <p>Powstanie w folderze plik <a class="reference external" href="http://form.py">form.py</a>, który będzie zawierać interfejs, który zaprojektowaliśmy w QtDesigner:</p>
-<img src='wyk6_img/18.png' /><p><b> Za każdym razem gdy zmienimy coś w interfejsie, trzeba będzie ponownie wykonać konwersję!</p>
+<img src='wyk6_img/18.png' /><p><b> Za każdym razem gdy zmienimy coś w interfejsie, trzeba będzie ponownie wykonać konwersję! </b></p>
 <p>Wpisywanie całej ścieżki na raz byłoby żmudne, więc dla ułatwienia możemy stworzyć sobie <b> batch file </b>, który będzie miał zapisną tę scieżkę.</p>
 <p>W folderze z pluginem tworzymy nowy plik “konwert.bat” i otwieramy go notatnikiem. W środku wpisujemy:</p>
 <p>&#64;sciezka_do_pliku_exe %1 %2 %3 %4 %5 %6 %7 %8 %9</p>
