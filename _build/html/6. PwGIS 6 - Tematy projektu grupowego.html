@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Moduł 3 - Lista Zadań &#8212; Programowanie w systemach GIS 2024</title>
+    <title>Moduł 6 - Tematy projektu grupowego &#8212; Programowanie w systemach GIS 2024</title>
   
   
   
@@ -62,11 +62,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '3. PwGIS 3 - Lista Zadań';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '6. PwGIS 6 - Tematy projektu grupowego';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Moduł 4 - (Q)GIS - szczegółowo o geometrii" href="4.%20PwGIS%204.html" />
-    <link rel="prev" title="Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności" href="3.%20PwGIS%203.html" />
+    <link rel="prev" title="Moduł 6 - Własna wtyczka do QGIS" href="6.%20PwGIS%206.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,13 +170,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202.html">Moduł 2 - QGIS Wprowadzenie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2.%20PwGIS%202%20-%20Lista%20Zada%C5%84.html">Moduł 2 - Lista Zadań</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203.html">Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Moduł 3 - Lista Zadań</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20PwGIS%203%20-%20Lista%20Zada%C5%84.html">Moduł 3 - Lista Zadań</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4.%20PwGIS%204.html">Moduł 4 - (Q)GIS - szczegółowo o geometrii</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4.%20PwGIS%204%20-%20Lista%20Zada%C5%84.html">Moduł 4 - Lista Zadań</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5.%20PwGIS%205.html">Moduł 5 - (Q)GIS - Kalkulator pól</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5.%20PwGIS%205%20-%20Lista%20Zada%C5%84.html">Moduł 5 - Lista Zadań</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6.%20PwGIS%206.html">Moduł 6 - Własna wtyczka do QGIS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6.%20PwGIS%206%20-%20Tematy%20projektu%20grupowego.html">Moduł 6 - Tematy projektu grupowego</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Moduł 6 - Tematy projektu grupowego</a></li>
 </ul>
 
     </div>
@@ -249,7 +248,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F3. PwGIS 3 - Lista Zadań.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F6. PwGIS 6 - Tematy projektu grupowego.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -279,7 +278,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/3. PwGIS 3 - Lista Zadań.ipynb" target="_blank"
+      <li><a href="_sources/6. PwGIS 6 - Tematy projektu grupowego.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -359,7 +358,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Moduł 3 - Lista Zadań</h1>
+    <h1>Moduł 6 - Tematy projektu grupowego</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -373,41 +372,60 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="modul-3-lista-zadan">
-<h1>Moduł 3 - Lista Zadań<a class="headerlink" href="#modul-3-lista-zadan" title="Permalink to this heading">#</a></h1>
-<p>Ćwiczenia odbywają się z wykorzystaniem warstw shp</p>
-<p>Raster powierzchni Ziemi: <a class="reference external" href="https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/raster/NE1_50M_SR_W.zip">https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/raster/NE1_50M_SR_W.zip</a></p>
-<p>Kraje świata: <a class="reference external" href="https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/world-administrative-boundaries/exports/shp?lang=en&amp;amp;timezone=Europe%2FBerlin">https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/world-administrative-boundaries/exports/shp?lang=en&amp;timezone=Europe%2FBerlin</a></p>
-<ol class="arabic simple">
-<li><p>Napisz funkcję, która odczytuje z rastra jego metadane: wysokosc, szerokosc, liczba kanalow, rozdzielczosc przestrzenna, uklad odniesienia oraz wartosc maksymalna i minimalna pikseli w każdym z kanałów. Następnie funkcja ta zapisuje plik z metadanymi *.txt, gdzie * to nazwa rastra.</p></li>
-</ol>
-<ol class="arabic simple" start="2">
-<li><p>Wczytaj warstwę wektorową krajów świata. Napisz funkcję, która wyszukuje wszystkie kraje kończące się i zaczynającą na podaną literę oraz zaznacza je w kolorze wybranym przez użytkownika.</p></li>
-</ol>
-<ol class="arabic simple" start="3">
-<li><p>Napisz funkcję, która dla zaznaczonej warstwy wybiera 20 pierwszych obiektów i zmienia ich geometrię, przesuwając je o podaną wartość współrzędnych X oraz Y. Policz sumaryczną powierzchnię wszystkich przesuniętych obiektów.</p></li>
-</ol>
-<p>Podpowiedź:</p>
-<p>Współrzędne danego obiektu mogą być pobrana jako lista. Typ geometri MULTIPOLYGON składa się z kilku list. Pierwszy poziom opisuje różne wieloboki w warstwie, drugi wieloboki oraz otwory. Aby dostać się do geometrii pierwszego (tylko ten będziemy modyfikować) wieloboku należy odwołać się poprzez podwójne indeksowanie do listy:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>old_geom = [pt for pt in geom.asMultiPolygon()][0][0]
+  <section class="tex2jax_ignore mathjax_ignore" id="modul-6-tematy-projektu-grupowego">
+<h1>Moduł 6 - Tematy projektu grupowego<a class="headerlink" href="#modul-6-tematy-projektu-grupowego" title="Permalink to this heading">#</a></h1>
+<p>Zasady:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Projekt realizujemy w grupach (2 razy 3 osoby, jedna para);
+Projekt ma być przesłany przed 24.06, na ostatnich ćwiczeniach będzie czas na poprawki;
+
+Wtyczka ma realizować jeden z podanych tematów, w komentarzu ogólnym na classroom proszę podać temat (np. 1b) i osoby, które dany temat wybrały do realizacji. Tematy nie mogą się powtarzać;
+
+Istnieje dowolność zaproponowania własnego tematu, który należy najpierw ze mną skonsultować (można na Google Classroom, można na maila);
+
+Wtyczkę należy przesłać jako cały folder, który zostanie zinterpretowany jako wtyczka do QGISa.
 </pre></div>
 </div>
-<p>Należy stworzyć sobie nową listę z geometrią do zapisania:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>new_geom = []
+<p>Poza wymaganiem realizacji tematu wtyczki, każda wtyczka musi implementować poniższe minimalne wymagania:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Wtyczka musi być zaprojektowana w QtDesigner;
+
+Wtyczka musi być wybieralna z menu QGISa, może być jako ikona na pasku lub z rozwijalnego menu;
+
+W każdej wtyczce należy umieścić przynajmniej trzy różne widżety, które mają oprogramowaną funkcjonalność na zasadzie interakcji z użytkownikiem (zatem nie liczą się wszelkiego rodzaju widżety organizujące układ przycisków itp.);
+
+Należy oprogramować przynajmniej dwie interakcje pomiędzy widżetami - na przykład przenoszenie ścieżki pliku do linii edycji lub blokowanie przycisku, gdy na przykład nie wczytano jeszcze danych;
+
+Należy zaprogramować pojawianie się wiadomości na pasku lub w oknie, która przedstawia jakąś informację związaną z procesem (na przykład &quot;zakończono pomyślnie!&quot;) - o programowaniu takich wiadomości jeszcze powiem.
 </pre></div>
 </div>
-<p>Do każdej współrzędnej w starej geometri dodać wektor przemieszczenia:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>for pt in old_geom:
-    new_pt = pt+QgsVector(x,y)
-    new_geom.append(new_pt)
+<h3> Tematy do wyboru </h3>
+<p>Poniżej znajduje się kilka tematów do wyboru, należy wybrać jeden.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. Narzędzie służące do rysowania kół lub pierścieni w oparciu o:
+
+    1a. Podane w oknie parametry (środek, promień, grubość).
+    
+    1b. Podane parametry, z których część (jak np. współrzędne środka) będą wprowadzane poprzez kliknięcie użytkownika na mapę [funkcjonalność wyboru obiektów na mapie w czasie działania wtyczki zostanie jeszcze przedstawiona]
+    
+2. Narzędzie do rysowania krzywych na podstawie trzech wybranych punktów.
+
+3. Narzędzie pozwalające na wygodną zmianę koloru zaznaczenia obiektów oraz koloru tła (z wykorzystaniem widżetu QColorDialog Class).
+
+4. Narzędzie pozwalające na transformację i załadowanie do QGISa wybranych obiektów na warstwie wektorowej do układu wprowadzonego przez użytkownika w formie kodu EPSG. Opcjonalnie można umożliwić również otwarcie okna do wyboru układu współrzędnych.
+
+5. Narzędzie służące do obliczenia statystyk zaznaczonych obiektów dla jednego WYBRANEGO typu warstwy:
+
+    5a. Dla wieloboków: Sumarycznego pola powierzchni, średniego pola powierzchni oraz odchylenia standardowego w wybranej z listy rozwijalnej jednostce powierzchni.
+    
+    5b. Dla linii: sumarycznej długości, średnej długości i odchylenia standradowego długości w wybranej z listy rozwijalnej jednostce długości.
+
+6. Narzędzie do generowania losowych geometrii gdzie użytkownik może podać - zakres współrzędnych w których można generować, liczbę obiektów do wygenerowania oraz:
+
+    6a. Opcja 1: narzędzie ma generować punkty, wtedy tylko dwa powyższe parametry;
+    
+    6b. Opcja 2: narzędzie ma generować linie, wtedy minimalnie jeden dodatkowy parametr - np. liczba wierzchołków linii lub jej długość
+    
+    6c. Opcja 3: narzędzie ma generować wieloboki, wtedy minimalnie jeden dodatkowy parametr - np. liczba wierzchołków lub pole powierzchni
 </pre></div>
 </div>
-<ol class="arabic simple" start="4">
-<li><p>Znajdź sposób na stworzenie nowej warstwy w QGIS. Napisz funkcję, która tworzy nową warstwę punktową z polami atrybutów podanych przez użytkownika w funkcji.</p></li>
-</ol>
-<ol class="arabic simple" start="5">
-<li><p>Napisz funkcję, która w trybie edycji doda punkty o podanych współprzędnych do warstwy utworzonej w zadaniu 4.</p></li>
-</ol>
 </section>
 
     <script type="text/x-thebe-config">
@@ -441,22 +459,13 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="3.%20PwGIS%203.html"
+       href="6.%20PwGIS%206.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Moduł 3 - (Q)GIS - warstwy, projekty, podstawowe funkcjonalności</p>
+        <p class="prev-next-title">Moduł 6 - Własna wtyczka do QGIS</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="4.%20PwGIS%204.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Moduł 4 - (Q)GIS - szczegółowo o geometrii</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
