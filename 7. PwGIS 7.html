@@ -479,17 +479,17 @@ Jeden CheckBox
 </pre></div>
 </div>
 <p>Nazwy pozostawiam domyślne, zmieniłem jednak tekst wyświetlany na elementach.</p>
-<img src='wyk7_img/2.png' /><img src='wyk7_img/3.png' /><p>Oczywiście elementy można modyfikować - zmieniać nazwy, tekst, parametry, wszystko zależnie od klasy obiektu. Przyciski mogą być wyłączane i uruchamiane  w zależności od wciśnięcia jakiegoś innego przycisku lub załadowania określonego pliku. SpinBox może mieć ustaloną domyślną wartość, być zwiększany za każdym kliknięciem o więcej niż 1 i tak dalej. Omówienie wszystkich funkcjonalności widżetów Qt jest zbędne, gdyż ich liczba jest naprawdę duża a w zależności od używanego widżetu w Qt Designer łatwo jest poznać i edytować parametry każdego elementu.</p>
+<img src='wyk7_img/2.png' /><img src='wyk7_img/3.PNG' /><p>Oczywiście elementy można modyfikować - zmieniać nazwy, tekst, parametry, wszystko zależnie od klasy obiektu. Przyciski mogą być wyłączane i uruchamiane  w zależności od wciśnięcia jakiegoś innego przycisku lub załadowania określonego pliku. SpinBox może mieć ustaloną domyślną wartość, być zwiększany za każdym kliknięciem o więcej niż 1 i tak dalej. Omówienie wszystkich funkcjonalności widżetów Qt jest zbędne, gdyż ich liczba jest naprawdę duża a w zależności od używanego widżetu w Qt Designer łatwo jest poznać i edytować parametry każdego elementu.</p>
 <p>Istotne jest zaznaczenie, że parametry elementów które możemy zmieniać w Qt Designer, możemy też zmieniać w Pythonie używając tych samych nazw. Na przykład QWidget posiada parametr enabled (czyli czy widżet jest “klikalny”). W programowaniu wtyczki możemy odwołać się do tego przycisku i użyć na nim metody setEnabled by zmienić jego parametr w czasie działania wtyczki. Jeśli nie jest to jasne, to bez obwaw, później zobaczymy to na przykładzie.</p>
 <p>Zapisujemy okno i pamiętamy o przełożeniu na interfejs Pythona (tak jak na ćwiczeniach)</p>
 <p>Po przeładowaniu wtyczki zmiany są widoczne:</p>
-<img src='wyk7_img/4.png' /><p>Przyciski nie wykonują jednak żadnej akcji bo takowej nie zaprogramowaliśmy!</p>
+<img src='wyk7_img/4.PNG' /><p>Przyciski nie wykonują jednak żadnej akcji bo takowej nie zaprogramowaliśmy!</p>
 </section>
 <section id="programowanie-widzetow">
 <h2>Programowanie widżetów<a class="headerlink" href="#programowanie-widzetow" title="Permalink to this heading">#</a></h2>
 <p>Zacznijmy od oprogramowania naszego przycisku “Otwórz”, jak się domyślamy, ma on pozwalać na otwarcie/wczytanie warstwy do QGIS.</p>
 <p>Nasz przycisk ma domyślną nazwę pushButton co widać w pliku <a class="reference external" href="http://form.py">form.py</a></p>
-<img src='wyk7_img/5.png' /><p>Działanie przycisków będziemy oprogramowywać w funkcji run().</p>
+<img src='wyk7_img/5.PNG' /><p>Działanie przycisków będziemy oprogramowywać w funkcji run().</p>
 <p>Nasz intefrejs został już zapisany pod zmienną klasy self.form. Każdy widżet jest powiązany (dziedziczy) z intefejsem, więc będziemy używać odwołania self.form aby połączyć się z każym widżetem naszego interfejsu.</p>
 <p>A zatem odwołanie do naszego przycisku to:</p>
 <div class="cell docutils container">
@@ -508,7 +508,7 @@ Jeden CheckBox
 </div>
 </div>
 <p>Efekt:</p>
-<img src='wyk7_img/6.png' /><p>Dwie uwagi:</p>
+<img src='wyk7_img/6.PNG' /><p>Dwie uwagi:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.Kod należy wprowdzić przed metodą show(), bo metoda show() zatrzymuje wykonywanie kodu
 
 2. Jako, że zmianę tekstu zaprogramowaliśmy w funkcji run, która jest uruchamiana przy otwarciu okna, zmianę widzimy od razu.
@@ -545,7 +545,7 @@ Jeden CheckBox
 <p>QFileDialog to okno wyboru pliku, które zostanie otworzone przy wywołaniu tej funkcji. Wywoływana jest metoda getOpenFileName, która przekaże scieżkę do wybranego pliku do zmiennej “sciezka”.</p>
 <p>Metoda getOpenFileName przyjmuje argumenty (obiekt nadrzędny (tu self.okno), nazwa okna, folder w którym ma się domyślnie otworzć i filtr (tutaj dowolny plik o rozszerzeniu shp).</p>
 <p>Po przeładowaniu wtyczki możemy zobaczyć czy funkcja działa:</p>
-<img src='wyk7_img/7.png' /><p>Oczywiście po wybraniu pliku nic się nie stanie. Należy oprogramować dodanie pliku z odczytanej ścieżki do projektu.</p>
+<img src='wyk7_img/7.PNG' /><p>Oczywiście po wybraniu pliku nic się nie stanie. Należy oprogramować dodanie pliku z odczytanej ścieżki do projektu.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">otworz</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -568,7 +568,7 @@ Jeden CheckBox
 </div>
 </div>
 </div>
-<img src='wyk7_img/8.png' /><p>Oprogramujmy również nasz przycisk “Zapisz”. W funkcji run() musimy dodać uruchomienie nowej funkcji zapis. Skorzystamy z innego sygnału “released”, czyli okno uruchomi się dopiero po tym jak <b> puścimy </b> przycisk:</p>
+<img src='wyk7_img/8.PNG' /><p>Oprogramujmy również nasz przycisk “Zapisz”. W funkcji run() musimy dodać uruchomienie nowej funkcji zapis. Skorzystamy z innego sygnału “released”, czyli okno uruchomi się dopiero po tym jak <b> puścimy </b> przycisk:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">pushButton_2</span><span class="o">.</span><span class="n">released</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zapisz</span><span class="p">)</span>
@@ -610,7 +610,7 @@ Jeden CheckBox
 </div>
 <p>W pierwszej linijce ustalamy wartość spinBox na podstawie jego obecnej wartości o podnosimy ją o 1</p>
 <p>W drugiej linijce zmieniamy geometrię obiektu. setGeometry przyjmuje argumenty (pozycja x, pozycja y, szerokosc, wysokosc). Pobieramy je z obecnych wartości a szerokość i wysokości zwiększamy o 1. W rezultacie:</p>
-<img src='wyk7_img/9.png' /><p>W sumie nasz kod wyglądania obecnie tak:</p>
+<img src='wyk7_img/9.PNG' /><p>W sumie nasz kod wyglądania obecnie tak:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qgis.PyQt.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
