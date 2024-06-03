@@ -178,6 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="5.%20PwGIS%205%20-%20Lista%20Zada%C5%84.html">Moduł 5 - Lista Zadań</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Moduł 6 - Własna wtyczka do QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6.%20PwGIS%206%20-%20Tematy%20projektu%20grupowego.html">Moduł 6 - Tematy projektu grupowego</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7.%20PwGIS%207.html">Moduł 7 - Własna wtyczka do QGIS (Część 2)</a></li>
 </ul>
 
     </div>
@@ -511,23 +512,13 @@ repository=URL
 </pre></div>
 </div>
 <p>Na pasku powinna pojawić sie informacja gdzie zainstalowano PyQt:</p>
-<img src='wyk6_img/15.png' /><p>Tam będzie znajdować się plik pyuic5.exe, który nas interesuje. Zapamiętujemy ścieżkę do tego pliku.</p>
-<p>Teraz w folderze z wtyczką musimy otworzyć okno poleceń Windows PowerShell:</p>
-<p>shift + prawy przycisk myszy gdzies na folderze, przy odznaczonych wszystkich plikach:</p>
-<img src='wyk6_img/16.png' /><p>Teraz musimy wywołać konwerter, czyli plik pyuic5.exe. Należy wpisać całą ścieżkę do pliku oraz podać dwa parametry plik wejściowy *.ui i wyjściowy *.py</p>
-<img src='wyk6_img/17.png' /><p>U mnie to jest:</p>
-<p>C:\users\kamil\appdata\local\programs\python\python37\Scripts\pyuic5.exe form.ui -o <a class="reference external" href="http://form.py">form.py</a></p>
-<p>Powstanie w folderze plik <a class="reference external" href="http://form.py">form.py</a>, który będzie zawierać interfejs, który zaprojektowaliśmy w QtDesigner:</p>
-<img src='wyk6_img/18.png' /><p><b> Za każdym razem gdy zmienimy coś w interfejsie, trzeba będzie ponownie wykonać konwersję! </b></p>
-<p>Wpisywanie całej ścieżki na raz byłoby żmudne, więc dla ułatwienia możemy stworzyć sobie <b> batch file </b>, który będzie miał zapisną tę scieżkę.</p>
-<p>W folderze z pluginem tworzymy nowy plik “konwert.bat” i otwieramy go notatnikiem. W środku wpisujemy:</p>
-<p>&#64;sciezka_do_pliku_exe %1 %2 %3 %4 %5 %6 %7 %8 %9</p>
+<img src='wyk6_img/15.png' /><p>Tam będzie znajdować się plik <a class="reference external" href="http://pyuic.py">pyuic.py</a>, który nas interesuje. Zapamiętujemy ścieżkę do tego pliku.</p>
+<p>W naszej konsoli Python przenosimy się do folderu gdzie mamy nasz plik z UI z interfejsem wtyczki.</p>
+<img src='wyk6_img/16.png' /><p>Teraz musimy wywołać konwerter, czyli plik <a class="reference external" href="http://pyuic.py">pyuic.py</a>. Polecenie wywołujące skrypt powinno być dostępne w środowisku. Należy wpisać polecenie oraz podać dwa parametry plik wejściowy *.ui i wyjściowy *.py</p>
 <p>U mnie to jest:</p>
-<p>&#64;C:\users\kamil\appdata\local\programs\python\python37\Scripts\pyuic5.exe %1 %2 %3 %4 %5 %6 %7 %8 %9</p>
-<p>Teraz zamiast wywoływać w PowerShell całą scieżkę piszę:</p>
-<p>./konwert form.ui -o <a class="reference external" href="http://form.py">form.py</a></p>
-<p>(kropka i ukośnik są ważne!)</p>
-</section>
+<p><code class="docutils literal notranslate"><span class="pre">pyuic5</span> <span class="pre">form.ui</span> <span class="pre">-o</span> <span class="pre">form.py</span></code></p>
+<p>Powstanie w folderze plik <a class="reference external" href="http://form.py">form.py</a>, który będzie zawierać interfejs, który zaprojektowaliśmy w QtDesigner:</p>
+<img src='wyk6_img/18.png' /></section>
 <section id="interfejs-gotowy">
 <h2>Interfejs gotowy!<a class="headerlink" href="#interfejs-gotowy" title="Permalink to this heading">#</a></h2>
 <p>Wtyczka jeszcze nie zadziała. Brakuje nam dwóch ważnych funkcji w pliku głównym - initGui() oraz unload()</p>
